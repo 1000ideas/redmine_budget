@@ -1,0 +1,11 @@
+<table class="budget-plugin">
+  <tbody>
+    <tr class="budget-tracker">
+      <th><%= l(:tracker) %></th>
+      <td>
+        <%= select_tag "settings[tracker_id]", options_from_collection_for_select(Tracker.all, :id, :name, settings[:tracker_id]) %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

@@ -1,0 +1,3 @@
+= Redmine Budget plugin
+
+Description goes here
