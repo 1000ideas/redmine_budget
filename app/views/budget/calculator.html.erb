@@ -1,0 +1,42 @@
+<% html_title l(:budget_title) %>
+
+<% content_for :header_tags do %>
+  <%= javascript_include_tag 'budget', :plugin => 'redmine_budget' %>
+  <%= stylesheet_link_tag 'budget', :plugin => 'redmine_budget' %>
+<% end %>
+
+<div class="redmine_budget">
+	<div>
+		<h2>Ustawienia</h2>
+		<form class="settings">
+			<fieldset>
+				<label>Koszt za godzinę: </label><input type="text" name="cost_per_hour" value="50" /><br />
+				<label>Stawka za godzinę: </label><input type="text" name="rate" /><br />
+			</fieldset>
+		</form>
+	</div>
+	<div class="splitcontentleft">
+		<h2>Przelicz budżet na czas</h2>
+		<form class="budget_calculator down">
+			<fieldset>
+				<label>Budżet: </label><input type="text" name="budget" /><br />
+				<label>Przepalone godziny: </label><input type="text" name="burned" /><br />
+				<label>Dostępne godziny: </label><input type="text" name="available" disabled="disabled" /><br />
+				<label>Koszt: </label><input type="text" name="cost" disabled="disabled" /><br />
+				<label>Overhead: </label><input type="text" name="overhead" disabled="disabled" /><br />
+				<label>Acc Cost: </label><input type="text" name="acc_cost" disabled="disabled" /><br />
+				<label>Zysk: </label><input type="text" name="profit" disabled="disabled" /><br />
+			</fieldset>
+		</form>
+	</div>
+
+	<div class="splitcontentright">
+		<h2>Przelicz czas na budżet</h2>
+		<form class="time_calculator up">
+			<fieldset>
+				<label>Ilość godzin: </label>
+				<input type="text" name="hours" /><br />
+			</fieldset>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,13 @@
+/* line 2, budget.sass */
+.redmine_budget fieldset {
+  width: 100%;
+}
+/* line 4, budget.sass */
+.redmine_budget fieldset label {
+  display: inline-block;
+  width: 40%;
+}
+/* line 7, budget.sass */
+.redmine_budget fieldset input {
+  width: 58%;
+}

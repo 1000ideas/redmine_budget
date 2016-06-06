@@ -1,1 +1,1 @@
-get 'budget/calculate' => 'budget#calculate'
+get 'budget/calculator' => 'budget#calculator'
