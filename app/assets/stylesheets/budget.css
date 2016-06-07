@@ -11,3 +11,418 @@
 .redmine_budget fieldset input {
   width: 58%;
 }
+/* line 9, budget.sass */
+.redmine_budget fieldset .score-indicator {
+  display: inline-block;
+  width: 100%;
+  height: 1em;
+}
+/* line 13, budget.sass */
+.redmine_budget fieldset .score-indicator div {
+  display: block;
+  height: 100%;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue0 {
+  background: #e63c1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue1 {
+  background: #e63f1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue2 {
+  background: #e6421a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue3 {
+  background: #e6461a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue4 {
+  background: #e6491a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue5 {
+  background: #e64d1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue6 {
+  background: #e6501a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue7 {
+  background: #e6531a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue8 {
+  background: #e6571a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue9 {
+  background: #e65a1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue10 {
+  background: #e65e1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue11 {
+  background: #e6611a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue12 {
+  background: #e6641a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue13 {
+  background: #e6681a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue14 {
+  background: #e66b1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue15 {
+  background: #e66f1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue16 {
+  background: #e6721a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue17 {
+  background: #e6751a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue18 {
+  background: #e6791a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue19 {
+  background: #e67c1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue20 {
+  background: #e6801a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue21 {
+  background: #e6831a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue22 {
+  background: #e6861a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue23 {
+  background: #e68a1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue24 {
+  background: #e68d1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue25 {
+  background: #e6911a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue26 {
+  background: #e6941a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue27 {
+  background: #e6971a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue28 {
+  background: #e69b1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue29 {
+  background: #e69e1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue30 {
+  background: #e6a21a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue31 {
+  background: #e6a51a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue32 {
+  background: #e6a81a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue33 {
+  background: #e6ac1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue34 {
+  background: #e6af1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue35 {
+  background: #e6b31a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue36 {
+  background: #e6b61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue37 {
+  background: #e6b91a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue38 {
+  background: #e6bd1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue39 {
+  background: #e6c01a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue40 {
+  background: #e6c41a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue41 {
+  background: #e6c71a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue42 {
+  background: #e6ca1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue43 {
+  background: #e6ce1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue44 {
+  background: #e6d11a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue45 {
+  background: #e6d51a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue46 {
+  background: #e6d81a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue47 {
+  background: #e6db1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue48 {
+  background: #e6df1a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue49 {
+  background: #e6e21a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue50 {
+  background: #e6e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue51 {
+  background: #e2e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue52 {
+  background: #dfe61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue53 {
+  background: #dbe61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue54 {
+  background: #d8e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue55 {
+  background: #d5e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue56 {
+  background: #d1e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue57 {
+  background: #cee61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue58 {
+  background: #cae61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue59 {
+  background: #c7e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue60 {
+  background: #c4e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue61 {
+  background: #c0e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue62 {
+  background: #bde61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue63 {
+  background: #b9e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue64 {
+  background: #b6e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue65 {
+  background: #b3e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue66 {
+  background: #afe61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue67 {
+  background: #ace61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue68 {
+  background: #a8e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue69 {
+  background: #a5e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue70 {
+  background: #a2e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue71 {
+  background: #9ee61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue72 {
+  background: #9be61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue73 {
+  background: #97e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue74 {
+  background: #94e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue75 {
+  background: #91e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue76 {
+  background: #8de61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue77 {
+  background: #8ae61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue78 {
+  background: #86e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue79 {
+  background: #83e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue80 {
+  background: #80e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue81 {
+  background: #7ce61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue82 {
+  background: #79e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue83 {
+  background: #75e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue84 {
+  background: #72e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue85 {
+  background: #6fe61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue86 {
+  background: #6be61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue87 {
+  background: #68e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue88 {
+  background: #64e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue89 {
+  background: #61e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue90 {
+  background: #5ee61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue91 {
+  background: #5ae61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue92 {
+  background: #57e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue93 {
+  background: #53e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue94 {
+  background: #50e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue95 {
+  background: #4de61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue96 {
+  background: #49e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue97 {
+  background: #46e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue98 {
+  background: #42e61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue99 {
+  background: #3fe61a;
+}
+/* line 17, budget.sass */
+.redmine_budget fieldset .score-indicator div.hue100 {
+  background: #3ce61a;
+}

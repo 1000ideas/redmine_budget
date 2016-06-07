@@ -11,7 +11,7 @@
 		<form class="settings">
 			<fieldset>
 				<label>Koszt za godzinę: </label><input type="text" name="cost_per_hour" value="50" /><br />
-				<label>Stawka za godzinę: </label><input type="text" name="rate" /><br />
+				<label>Stawka za godzinę: </label><input type="text" name="rate" disabled="disabled" /><br />
 			</fieldset>
 		</form>
 	</div>
@@ -26,6 +26,8 @@
 				<label>Overhead: </label><input type="text" name="overhead" disabled="disabled" /><br />
 				<label>Acc Cost: </label><input type="text" name="acc_cost" disabled="disabled" /><br />
 				<label>Zysk: </label><input type="text" name="profit" disabled="disabled" /><br />
+				<label>Score: </label><input type="text" name="score" disabled="disabled" /><br />
+				<div class="score-indicator"><div style="width:50%;"></div></div>
 			</fieldset>
 		</form>
 	</div>
@@ -34,8 +36,8 @@
 		<h2>Przelicz czas na budżet</h2>
 		<form class="time_calculator up">
 			<fieldset>
-				<label>Ilość godzin: </label>
-				<input type="text" name="hours" /><br />
+				<label>Ilość godzin: </label><input type="text" name="hours" value="1" /><br />
+				<label>Wymagany budżet: </label><input type="text" name="required_budget" disabled="disabled" /><br />
 			</fieldset>
 		</form>
 	</div>

@@ -3,51 +3,69 @@
   var BudgetPlugin;
 
   BudgetPlugin = (function() {
+    BudgetPlugin.prototype._root = null;
+
     function BudgetPlugin() {
       jQuery((function(_this) {
         return function() {
-          _this._init_budget_calculator();
-          return _this._init_time_calculator();
+          _this._root = $('.redmine_budget');
+          if (_this._root.length === 0) {
+            return;
+          }
+          return _this._init_budget_calculator();
         };
       })(this));
       true;
     }
 
     BudgetPlugin.prototype._init_budget_calculator = function() {
-      var _cost_per_hour, _rate, _rate_acc_cost, _rate_base_cost, _rate_overhead, _root;
-      _root = $('.redmine_budget');
-      if (_root.length === 0) {
-        return;
-      }
-      _cost_per_hour = parseFloat($('[name=cost_per_hour]', _root).val());
-      _rate = _cost_per_hour + (_cost_per_hour * 0.8) + (_cost_per_hour * 0.33);
-      _rate = Math.ceil(_rate + (_rate * 0.5));
-      $('[name=rate]', _root).val(_rate);
-      _rate_base_cost = _rate * 0.313;
-      _rate_overhead = _rate * 0.2504;
-      _rate_acc_cost = _rate * 0.1033;
-      $('[name=budget]', _root).val(160);
-      $('[name=burned]', _root).val(1);
-      $('[name=budget],[name=burned]', _root).on('change', function() {
-        var _acc_cost, _budget, _burned, _cost, _overhead;
-        _budget = parseFloat($('[name=budget]', _root).val());
-        _burned = parseFloat($('[name=burned]', _root).val());
-        $('[name=available]', _root).val(_budget / _rate);
-        $('[name=cost]', _root).val(_cost = _burned * _rate_base_cost);
-        $('[name=overhead]', _root).val(_overhead = _burned * _rate_overhead);
-        $('[name=acc_cost]', _root).val(_acc_cost = _burned * _rate_acc_cost);
-        return $('[name=profit]', _root).val(_budget - (_cost + _overhead + _acc_cost));
-      });
-      return $('[name=budget]', _root).trigger('change');
-    };
-
-    BudgetPlugin.prototype._init_time_calculator = function() {
-      var _root;
-      _root = $('form.time_calculator');
-      if (_root.length === 0) {
-        return;
-      }
-      return $('[name=hours]', _root).val("test");
+      var _budget_calculate, _rate, _rate_acc_cost, _rate_base_cost, _rate_calculate, _rate_overhead, _time_calculate;
+      $('[name=budget]', this._root).val(160);
+      $('[name=burned]', this._root).val(1);
+      _rate = 0;
+      _rate_base_cost = 0;
+      _rate_overhead = 0;
+      _rate_acc_cost = 0;
+      _rate_calculate = function() {
+        var _cost_per_hour;
+        _cost_per_hour = parseFloat($('[name=cost_per_hour]', this._root).val());
+        _rate = _cost_per_hour + (_cost_per_hour * 0.8) + (_cost_per_hour * 0.33);
+        _rate = _rate + (_rate * 0.5);
+        $('[name=rate]', this._root).val(_rate);
+        _rate_base_cost = _rate * 0.313;
+        _rate_overhead = _rate * 0.2504;
+        _rate_acc_cost = _rate * 0.1033;
+        _budget_calculate();
+        return _time_calculate();
+      };
+      _budget_calculate = function() {
+        var _acc_cost, _budget, _burned, _cost, _overhead, _profit, _score, percent;
+        _budget = parseFloat($('[name=budget]', this._root).val());
+        _burned = parseFloat($('[name=burned]', this._root).val());
+        $('[name=available]', this._root).val(_budget / _rate);
+        $('[name=cost]', this._root).val(_cost = _burned * _rate_base_cost);
+        $('[name=overhead]', this._root).val(_overhead = _burned * _rate_overhead);
+        $('[name=acc_cost]', this._root).val(_acc_cost = _burned * _rate_acc_cost);
+        _profit = _budget - (_cost + _overhead + _acc_cost);
+        _score = _profit / (_budget * 0.33);
+        $('[name=profit]', this._root).val(_profit);
+        $('[name=score]', this._root).val(_score);
+        percent = Math.floor(100 * Math.max(0, (3.030303 + _score) / 6.06060606));
+        return $('.score-indicator div', this._root).css({
+          width: (Math.max(2, percent)) + "%"
+        }).attr({
+          "class": "hue" + percent
+        });
+      };
+      _time_calculate = function() {
+        var _hours;
+        _hours = parseFloat($('[name=hours]', this._root).val());
+        return $('[name=required_budget]', this._root).val(_hours * _rate);
+      };
+      $('[name=cost_per_hour]', this._root).on('change keyup', _rate_calculate);
+      $('[name=budget],[name=burned]', this._root).on('change keyup', _budget_calculate);
+      $('[name=hours]', this._root).on('change keyup', _time_calculate);
+      return $('[name=cost_per_hour]', this._root).trigger('change');
     };
 
     return BudgetPlugin;
