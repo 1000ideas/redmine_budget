@@ -9,6 +9,5 @@ class BudgetController < ApplicationController
   # accept_api_auth :check_for_new_deals
 
   def calculator
-    render text: "ok", layout: false
   end
 end
