@@ -1,3 +1,6 @@
+require_dependency 'redmine_budget/issue_patch'
+require_dependency 'redmine_budget_hook_listener'
+
 Redmine::Plugin.register :redmine_budget do
   name 'Redmine Budget plugin'
   author '1000ideas'
@@ -11,3 +14,9 @@ Redmine::Plugin.register :redmine_budget do
             },
             partial: 'redmine_budget/settings'
 end
+
+
+Rails.configuration.to_prepare do
+  Issue.send(:include, RedmineBudget::IssuePatch) unless Issue.included_modules.include? RedmineBudget::IssuePatch
+end
+

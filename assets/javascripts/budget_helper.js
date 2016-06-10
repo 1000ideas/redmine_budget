@@ -28,12 +28,9 @@
     };
 
     BudgetHelper.prototype.budget = function(_budget, _burned, _cost_per_hour) {
-      var _acc_cost, _available, _cost, _overhead, _percent, _profit, _score, ref;
+      var _acc_cost, _available, _cost, _overhead, _percent, _profit, _score;
       if (_cost_per_hour == null) {
         _cost_per_hour = null;
-      }
-      if (this._rate === null && _cost_per_hour === !null) {
-        ref = this.rates(_cost_per_hour), this._rate = ref[0], this._rate_overhead = ref[1], this._rate_acc_cost = ref[2], this._rate_base_cost = ref[3];
       }
       _budget = parseFloat(_budget);
       _burned = parseFloat(_burned);
@@ -43,6 +40,7 @@
       _acc_cost = (_acc_cost = _burned * this._rate_acc_cost);
       _profit = _budget - (_cost + _overhead + _acc_cost);
       _score = _profit / (_budget * 0.33);
+      console.log(_budget, _burned, this._rate);
       _percent = Math.floor(100 * Math.max(0, (3.030303 + _score) / 6.06060606));
       return [_budget, _burned, _available, _cost, _overhead, _acc_cost, _profit, _score, _percent];
     };

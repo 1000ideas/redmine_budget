@@ -18,9 +18,6 @@ class BudgetHelper
     [@._rate, @._rate_overhead, @._rate_acc_cost, @._rate_base_cost]
 
   budget: (_budget, _burned, _cost_per_hour = null) ->
-    if @._rate is null and _cost_per_hour is not null
-      [@._rate, @._rate_overhead, @._rate_acc_cost, @._rate_base_cost] = @.rates(_cost_per_hour)
-
     _budget = parseFloat(_budget)
     _burned = parseFloat(_burned)
     _available = (_budget / @._rate)
@@ -29,6 +26,8 @@ class BudgetHelper
     _acc_cost = (_acc_cost=(_burned * @._rate_acc_cost))
     _profit = _budget - (_cost+_overhead+_acc_cost)
     _score = _profit / (_budget * 0.33)
+
+    console.log _budget, _burned, @._rate
 
     _percent = Math.floor(100 * Math.max(0, ((3.030303 + _score) / 6.06060606)))
 
