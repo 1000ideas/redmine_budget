@@ -9,6 +9,7 @@ class BudgetController < ApplicationController
   # accept_api_auth :check_for_new_deals
 
   def index
+  	@settings = Setting[:plugin_redmine_budget]
   end
 
   def calculate
@@ -17,6 +18,7 @@ class BudgetController < ApplicationController
 
 	rate_factor = settings[:rate_factor].to_f
 	base_rate = params.has_key?(:rate) ? params[:rate].to_f : settings[:default_rate].to_f
+
 	rate = ( base_rate * rate_factor ).ceil
 
 	cost_factor = settings[:cost_factor].to_f
@@ -47,19 +49,25 @@ class BudgetController < ApplicationController
   			provision: provision
   		}
   	when "budget"
-  		hours = params[:hours].to_f
+  		result = []
+  		params[:estimation].each do |row|
+	  		hours = row[:hours].to_f
+	  		base_rate = row[:rate].to_f
 
-		total_work_cost = ( (hours * cost_factor) * base_rate ).ceil
-		middle_bid = ( (hours * rate_factor) * base_rate ).ceil
-		lower_bid = ( middle_bid * 0.85 ).ceil
-		upper_bid = ( middle_bid * 1.15 ).ceil
+			rate = ( base_rate * rate_factor ).ceil
 
-  		result = {
-  			work_cost: total_work_cost,
-  			lower_bid: lower_bid,
-  			middle_bid: middle_bid,
-  			upper_bid: upper_bid
-  		}
+			total_work_cost = ( (hours * cost_factor) * base_rate ).ceil
+			middle_bid = ( (hours * rate_factor) * base_rate ).ceil
+			lower_bid = ( middle_bid * 0.85 ).ceil
+			upper_bid = ( middle_bid * 1.15 ).ceil
+
+	  		result << {
+	  			work_cost: total_work_cost,
+	  			lower_bid: lower_bid,
+	  			middle_bid: middle_bid,
+	  			upper_bid: upper_bid
+	  		}
+	  	end
   	end
 
   	render json: result

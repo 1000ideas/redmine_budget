@@ -10,52 +10,41 @@ class BudgetPlugin
     true
 
   _init_budget_calculator: ->
+    @._generate_blank_row()
+    @._register_listeners()
+    @._get_data()
+
+  _generate_blank_row: ->
+    row = $('.row:last', @._root)
+    row.after( row.clone() )
+    $('.row:last input', @._root).val("")
+
+  _register_listeners: ->
+    $('input', @._root).unbind 'keyup change'
+    $('input', @._root).bind 'keyup change', $.debounce (ev) =>
+        empties_length = $.grep($(".row:last input", @._root), ((e) -> $(e).val().length > 0) ).length
+        if empties_length == 2
+          @._generate_blank_row()
+          @._register_listeners()
+        else if empties_length == 0
+          $(ev.target).parent().parent().remove()
+
+        @._get_data()
+      , 500, null, true
+
+
+  _get_data: ->
+    $.ajax "/budget/calculate?type=budget", {
+        data: $('.row input', @._root).serializeArray(),
+        success: (data) ->
+          $(data).each (i, e) -> 
+            r = $(".row:nth(#{i})")
+            $('td:nth(2)', r).text( e.work_cost )
+            $('td:nth(3)', r).text( e.lower_bid )
+            $('td:nth(4)', r).text( e.middle_bid )
+            $('td:nth(5)', r).text( e.upper_bid )
+      }
     
-    # koszt bazowy    overhead    acc cost    profit    rate
-    # 31,30%          25,04%      10,33%      33,33%    100,00%
-    $('[name=budget]', @._root).val(160)
-    $('[name=burned]', @._root).val(1)
-    _rate = 0
-    _rate_base_cost = 0
-    _rate_overhead = 0
-    _rate_acc_cost = 0
-
-    _rate_calculate = ->
-      [_rate, _rate_overhead, _rate_acc_cost, _rate_base_cost] = 
-        window.BudgetHelper.rates($('[name=cost_per_hour]', @._root).val())
-
-      $('[name=rate]', @._root).val(_rate)
-      _budget_calculate()
-      _time_calculate()
-
-
-    _budget_calculate = ->
-      [_budget, _burned, _available, _cost, _overhead, _acc_cost, _profit, _score, _percent] = 
-        window.BudgetHelper.budget($('[name=budget]', @._root).val(), $('[name=burned]', @._root).val(), $('[name=cost_per_hour]', @._root).val())
-
-      $('[name=available]', @._root).val(_available)
-      $('[name=cost]', @._root).val(_cost)
-      $('[name=overhead]', @._root).val(_overhead)
-      $('[name=acc_cost]', @._root).val(_acc_cost)
-      $('[name=profit]', @._root).val(_profit)
-      $('[name=score]', @._root).val(_score)
-      $('.score-indicator div', @._root).css(width: "#{Math.max(2,_percent)}%")
-                                        .attr(class: "hue#{_percent}")
-
-    _time_calculate = ->
-      _required_budget = 
-        window.BudgetHelper.requiredBudget($('[name=hours]', @._root).val())
-
-      $('[name=required_budget]', @._root).val(_required_budget)
-
-
-
-    $('[name=cost_per_hour]',@._root).on 'change keyup', _rate_calculate
-    $('[name=budget],[name=burned]',@._root).on 'change keyup', _budget_calculate
-    $('[name=hours]',@._root).on 'change keyup', _time_calculate
-
-    $('[name=cost_per_hour]',@._root).trigger 'change'
-
 
 window.BudgetPlugin = new BudgetPlugin()
 
