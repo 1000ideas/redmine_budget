@@ -6,6 +6,35 @@
         <%= select_tag "settings[tracker_id]", options_from_collection_for_select(Tracker.all, :id, :name, settings[:tracker_id]) %>
       </td>
     </tr>
+    <tr class="budget-rate_factor">
+      <th><%= l(:rate_factor) %></th>
+      <td>
+        <%= text_field_tag "settings[rate_factor]", settings[:rate_factor] %>
+      </td>
+    </tr>
+    <tr class="budget-cost_factor">
+      <th><%= l(:cost_factor) %></th>
+      <td>
+        <%= text_field_tag "settings[cost_factor]", settings[:cost_factor] %>
+      </td>
+    </tr>
+    <tr class="budget-default_rate">
+      <th><%= l(:default_rate) %></th>
+      <td>
+        <%= text_field_tag "settings[default_rate]", settings[:default_rate] %>
+      </td>
+    </tr>
+    <tr class="budget-profit_share">
+      <th><%= l(:profit_share) %></th>
+      <td>
+        <%= text_field_tag "settings[profit_share]", settings[:profit_share] %>
+      </td>
+    </tr>
+    <tr class="budget-provision">
+      <th><%= l(:provision) %></th>
+      <td>
+        <%= text_field_tag "settings[provision]", settings[:provision] %>
+      </td>
+    </tr>
   </tbody>
 </table>
-

@@ -2,3 +2,8 @@
 en:
   budget_title: "1000ideas Budget Redmine plugin"
   tracker: "Budget tracker name"
+  rate_factor: "Rate factor"
+  cost_factor: "Cost factor"
+  default_rate: "Default rate"
+  profit_share: "Profit share"
+  provision: "Provision"

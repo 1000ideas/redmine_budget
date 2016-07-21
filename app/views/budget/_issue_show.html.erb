@@ -1,14 +1,15 @@
-<table class="attributes redmine_budget_frontend" data-estimated-hours="<%= @issue.estimated_hours %>" data-budget="<%= @issue.budget %>" data-cost-per-hour="50">
+<hr />
+<table class="attributes redmine_budget_frontend" data-spent-time="<%= @issue.spent_time %>" data-budget="<%= @issue.budget %>" data-cost-per-hour="50">
 	<tbody>
 		<tr>
 			<th class="burned">Burned:</th>
-			<td class="burned"></td>
+			<td class="burned"><%= @issue.spent_time %></td>
 			<th class="score">Score:</th>
-			<td class="score"></td>
+			<td class="score"><%= @issue.score %></td>
 		</tr>
 		<tr>
 			<th class="profit">Profit:</th>
-			<td class="profit"></td>
+			<td class="profit"><%= @issue.profit %></td>
 			<th class=""></th>
 			<td class=""></td>
 		</tr>

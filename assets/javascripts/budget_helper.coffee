@@ -27,8 +27,6 @@ class BudgetHelper
     _profit = _budget - (_cost+_overhead+_acc_cost)
     _score = _profit / (_budget * 0.33)
 
-    console.log _budget, _burned, @._rate
-
     _percent = Math.floor(100 * Math.max(0, ((3.030303 + _score) / 6.06060606)))
 
 

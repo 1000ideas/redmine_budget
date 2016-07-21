@@ -1,3 +1,11 @@
 = Redmine Budget plugin
 
-Description goes here
+# To develop
+
+Run redmine app with:
+guard
+
+
+And watch SASS with:
+cd plugins/redmine_budget/assets/stylesheets
+compass watch --sass-dir=. --css-dir=.

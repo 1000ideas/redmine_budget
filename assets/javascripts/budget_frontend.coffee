@@ -14,12 +14,11 @@ class BudgetFrotendPlugin
         window.BudgetHelper.rates(@._root.data('cost-per-hour'))
 
       [_budget, _burned, _available, _cost, _overhead, _acc_cost, _profit, _score, _percent] = 
-        window.BudgetHelper.budget(@._root.data('budget'), @._root.data('estimated-hours'), @._root.data('cost-per-hour'))
+        window.BudgetHelper.budget(@._root.data('budget'), @._root.data('spent-time'), @._root.data('cost-per-hour'))
 
-
-      $('td.burned', @._root).html(_burned)
-      $('td.profit', @._root).html(_profit)
-      $('td.score', @._root).html(_score)
+      console.log(_burned)
+      console.log(_profit)
+      console.log(_score)
 
 
 window.BudgetFrotendPlugin = new BudgetFrotendPlugin()
