@@ -14,18 +14,18 @@ class BudgetController < ApplicationController
 
   def calculate
   	@result = {}
-  	settings = Setting[:plugin_redmine_budget]
+  	@settings = Setting[:plugin_redmine_budget]
 
-	rate_factor = settings[:rate_factor].to_f
-	base_rate = params.has_key?(:rate) ? params[:rate].to_f : settings[:default_rate].to_f
+	rate_factor = @settings[:rate_factor].to_f
+	base_rate = params.has_key?(:rate) ? params[:rate].to_f : @settings[:default_rate].to_f
 
 	rate = ( base_rate * rate_factor ).ceil
 
-	cost_factor = settings[:cost_factor].to_f
+	cost_factor = @settings[:cost_factor].to_f
 	work_cost = ( base_rate * cost_factor ).ceil
 
-	profit_share = settings[:profit_share].to_f
-	provision = settings[:provision].to_f
+	profit_share = @settings[:profit_share].to_f
+	provision = @settings[:provision].to_f
 
   	case params[:type]
   	when "rate"
@@ -35,18 +35,20 @@ class BudgetController < ApplicationController
   		}
   	when "issue"
   		unless params[:issue_id].blank? 
-	  		issue = Issue.where(id: params[:issue_id]).first
+	  		@issue = Issue.where(id: params[:issue_id]).first
 
-	  		if !issue.estimated_hours.blank? and !issue.budget.blank?
-				total_work_cost = issue.spent_hours * work_cost
+	  		logger.error "XXXXXXXXXXXXXXXXXXXXXx #{@issue.spent_hours_with_children}"
+	  		# binding.pry
+	  		if !@issue.estimated_hours.blank? and !@issue.budget.blank?
+				total_work_cost = @issue.spent_hours_with_children * work_cost
 				additional_cost = 0
-		  		profit = (issue.budget - (total_work_cost + additional_cost)).ceil
+		  		profit = (@issue.budget - (total_work_cost + additional_cost)).ceil
 		  		provision = (profit * provision).ceil
 
 		  		@result = {
-		  			estimated: issue.estimated_hours,
-		  			spent: issue.spent_hours,
-		  			budget: issue.budget,
+		  			estimated: @issue.estimated_hours,
+		  			spent: @issue.spent_hours_with_children,
+		  			budget: @issue.budget,
 		  			profit: profit,
 		  			provision: provision
 		  		}

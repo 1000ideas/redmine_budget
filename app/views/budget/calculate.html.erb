@@ -1,5 +1,44 @@
 <% if @result.has_key?(:estimated) %>
 <h3>Podsumowanie</h3>
+<h2>Zalogowany czas</h2>
+
+<table border="1">
+	<tr>
+		<th>Użytkownik</th>
+		<th>Średnia Stawka</th>
+		<th>Łączny czas</th>
+		<th>Łączny koszt</th>
+	</tr>
+<% @issue.time_entries_with_children.group_by(&:user_id).each do |user_id, time_entries| %>
+	<tr>
+		<th><%= User.find(user_id).lastname %></th>
+		<td>
+			<% 
+				rate_avg = []
+				hours_sum = 0
+				cost_sum = 0
+				time_entries.each do |time|
+					rate = Rate.order("id DESC").where(user_id: user_id, project_id: time.project_id, date_in_effect: (10.years.ago...time.created_on)).limit(1).first
+					rate = ( rate.blank? ? @settings[:default_rate].to_f : rate.amount.to_f )
+
+					rate_avg << rate
+					hours_sum += time.hours
+					cost_sum += time.hours * rate
+				end
+			%>
+			<%= rate_avg.reduce(:+) / rate_avg.size.to_f %>
+		</td>
+		<td>
+			<%= hours_sum %>
+		</td>
+		<td>
+			<%= cost_sum %>
+		</td>
+	</tr>
+<% end %>
+</table>
+
+<h2>Zrealizowany budżet</h2>
 <table border="1">
 	<tr>
 		<th>Szacowany czas: </th>
@@ -23,5 +62,8 @@
 	</tr>
 </table>
 <% else %>
-<p>Zadanie musi mieć określone Szacowany czas, Budget i Stawki godzinowe</p>
+<p>Zadanie <%= params[:issue_id] %> musi mieć określone Szacowany czas, Budget i Stawki godzinowe</p>
 <% end %>
+<br />
+<br />
+<hr />

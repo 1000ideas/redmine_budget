@@ -31,6 +31,23 @@ module RedmineBudget
           nil
         end
     	end
+
+      def spent_hours_with_children
+        if children.count > 0
+          spent_hours + children.sum(&:spent_hours_with_children)
+        else
+          spent_hours
+        end
+      end
+
+      def time_entries_with_children
+        if children.count > 0
+          (time_entries.all + children.collect(&:time_entries_with_children)).flatten
+        else
+          time_entries.all
+        end
+      end
+
       
       # Returns the current cost of the TimeEntry based on it's rate and hours
       #
