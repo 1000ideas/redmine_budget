@@ -6,9 +6,17 @@
 <% end %>
 
 <div class="redmine_budget">
-	<div class="estimation">
+	<div class="issue_control">
+		<h2>Kontrola budżetu</h2>
+
+		<%= text_field_tag :issue_id %>
+		<%= javascript_tag "observeAutocompleteField('issue_id', '#{escape_javascript auto_complete_issues_path(:project_id => nil, :scope => 'system')}')" %>
+		<div class="budget_content"></div>
+	</div>
+	<div class="budget_estimation">
 		<h2>Szacowanie budżetu</h2>
-		<table border="1">
+		<h3>Czas pracy</h3>
+		<table border="1" class="estimation">
 			<tr class="header">
 				<th>Ilosć godzin</th>
 				<th>Stawka</th>
@@ -16,21 +24,47 @@
 				<th>Dolne widełki</th>
 				<th>Potrzebny budżet</th>
 				<th>Górne widełki</th>
+				<th></th>
 			</tr>
 			<tr class="row">
-				<td><input type="number" name="estimation[][hours]" value="1"></td>
+				<td><input type="number" name="estimation[][hours]" value=""></td>
 				<td><input type="number" name="estimation[][rate]" value="<%= @settings[:default_rate] %>"></td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
+				<td><a href="javascript: void(0);" class="remove">&times;</a></td>
+			</tr>
+		</table>
+		<h3>Koszty dodatkowe</h3>
+		<table border="1" class="additionals">
+			<tr class="header">
+				<th>Nazwa</th>
+				<th>Koszt</th>
+				<th></th>
 			</tr>
 			<tr class="row">
-				<td><input type="number" name="estimation[][hours]" value="10"></td>
-				<td><input type="number" name="estimation[][rate]" value="<%= @settings[:default_rate] %>"></td>
+				<td><input type="text" name="additionals[][name]" value=""></td>
+				<td><input type="number" name="additionals[][cost]" value=""></td>
+				<td><a href="javascript: void(0);" class="remove">&times;</a></td>
+			</tr>
+		</table>
+		<h3>Podsumowanie</h3>
+		<table border="1" class="summary">
+			<tr>
+				<th>Koszt pracy</th>
 				<td></td>
+			</tr>
+			<tr>
+				<th>Dolne widełki</th>
 				<td></td>
+			</tr>
+			<tr>
+				<th>Potrzebny budżet</th>
 				<td></td>
+			</tr>
+			<tr>
+				<th>Górne widełki</th>
 				<td></td>
 			</tr>
 		</table>

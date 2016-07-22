@@ -1,0 +1,27 @@
+<% if @result.has_key?(:estimated) %>
+<h3>Podsumowanie</h3>
+<table border="1">
+	<tr>
+		<th>Szacowany czas: </th>
+		<td><%= @result[:estimated] %></td>
+	</tr>
+	<tr>
+		<th>Spędzony czas:</th>
+		<td><%= @result[:spent] %></td>
+	</tr>
+	<tr>
+		<th>Budżet: </th>
+		<td><%= @result[:budget] %></td>
+	</tr>
+	<tr>
+		<th>Zysk: </th>
+		<td><%= @result[:profit] %></td>
+	</tr>
+	<tr>
+		<th>Prowizja: </th>
+		<td><%= @result[:provision] %></td>
+	</tr>
+</table>
+<% else %>
+<p>Zadanie musi mieć określone Szacowany czas, Budget i Stawki godzinowe</p>
+<% end %>
