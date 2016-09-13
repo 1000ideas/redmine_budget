@@ -11,6 +11,7 @@
           if (_this._root.length === 0) {
             return;
           }
+          _this._budget_calculate_path = $('.redmine_budget').data('budget-calculate-path');
           _this._init_budget_control();
           return _this._init_budget_calculator();
         };
@@ -20,7 +21,7 @@
 
     BudgetPlugin.prototype._init_budget_control = function() {
       return $('#issue_id').on('change blur', function(ev) {
-        return $.ajax("/budget/calculate.html", {
+        return $.ajax(window.BudgetPlugin._budget_calculate_path + ".html", {
           data: {
             type: "issue",
             issue_id: $(ev.target).val()
@@ -74,7 +75,7 @@
     };
 
     BudgetPlugin.prototype._get_data = function() {
-      return $.ajax("/budget/calculate.json?type=budget", {
+      return $.ajax(window.BudgetPlugin._budget_calculate_path + ".json?type=budget", {
         data: $('.budget_estimation .row input', this._root).serializeArray(),
         success: function(data) {
           var r, results, summary;

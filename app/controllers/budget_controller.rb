@@ -12,6 +12,12 @@ class BudgetController < ApplicationController
   	@settings = Setting[:plugin_redmine_budget]
   end
 
+  def user
+  	@settings = Setting[:plugin_redmine_budget]
+  	@user = User.find(params[:id])
+  	@issues = Issue.where(tracker_id: 5, assigned_to_id: params[:id])
+  end
+
   def calculate
   	@result = {}
   	@settings = Setting[:plugin_redmine_budget]
@@ -37,9 +43,7 @@ class BudgetController < ApplicationController
   		unless params[:issue_id].blank? 
 	  		@issue = Issue.where(id: params[:issue_id]).first
 
-	  		logger.error "XXXXXXXXXXXXXXXXXXXXXx #{@issue.spent_hours_with_children}"
-	  		# binding.pry
-	  		if !@issue.estimated_hours.blank? and !@issue.budget.blank?
+	  		if !@issue.spent_hours_with_children.blank? and !@issue.budget.blank?
 				total_work_cost = @issue.spent_hours_with_children * work_cost
 				additional_cost = 0
 		  		profit = (@issue.budget - (total_work_cost + additional_cost)).ceil

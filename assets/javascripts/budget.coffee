@@ -5,6 +5,8 @@ class BudgetPlugin
       @._root = $('.redmine_budget')
       return if @._root.length == 0
 
+      @._budget_calculate_path = $('.redmine_budget').data('budget-calculate-path')
+
       @_init_budget_control()
       @_init_budget_calculator()
 
@@ -12,7 +14,7 @@ class BudgetPlugin
 
   _init_budget_control: ->
     $('#issue_id').on 'change blur', (ev) ->
-      $.ajax "/budget/calculate.html", {
+      $.ajax "#{window.BudgetPlugin._budget_calculate_path}.html", {
           data: {
             type: "issue",
             issue_id: $(ev.target).val()
@@ -50,7 +52,7 @@ class BudgetPlugin
       alert("Can't remove last row")
 
   _get_data: ->
-    $.ajax "/budget/calculate.json?type=budget", {
+    $.ajax "#{window.BudgetPlugin._budget_calculate_path}.json?type=budget", {
         data: $('.budget_estimation .row input', @._root).serializeArray(),
         success: (data) ->
           results = $(data)

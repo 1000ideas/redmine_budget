@@ -11,10 +11,10 @@ Redmine::Plugin.register :redmine_budget do
   author_url 'http://1000i.pl'
 
   settings default: { 
-              rate_factor: 3.195,
-              cost_factor: 2.13,
-              default_rate: 50,
-              profit_share: 0.333,
+              rate_factor: 2,
+              cost_factor: 1.5,
+              default_rate: 20,
+              profit_share: 0.16,
               provision: 0.1,
               tracker_id: Tracker.first.id
             },

@@ -32,6 +32,46 @@ module RedmineBudget
         end
     	end
 
+      def budget_score
+        nil
+
+      end
+
+      def budget_profit
+
+        @settings = Setting[:plugin_redmine_budget]
+
+        rate_factor = @settings[:rate_factor].to_f
+        base_rate = @settings[:default_rate].to_f
+
+        rate = ( base_rate * rate_factor ).ceil
+
+        cost_factor = @settings[:cost_factor].to_f
+        work_cost = ( base_rate * cost_factor ).ceil
+
+        profit_share = @settings[:profit_share].to_f
+        provision = @settings[:provision].to_f
+
+
+        if !spent_hours_with_children.blank? and !budget.blank?
+          total_work_cost = spent_hours_with_children * work_cost
+          additional_cost = 0
+          profit = (budget - (total_work_cost + additional_cost)).ceil
+          provision = (profit * provision).ceil
+
+          # @result = {
+          #   estimated: estimated_hours,
+          #   spent: spent_hours_with_children,
+          #   budget: budget,
+          #   profit: profit,
+          #   provision: provision
+          # }
+          profit
+        else
+          nil
+        end
+      end
+
       def spent_hours_with_children
         if children.count > 0
           spent_hours + children.sum(&:spent_hours_with_children)
