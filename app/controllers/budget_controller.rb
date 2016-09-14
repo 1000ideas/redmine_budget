@@ -35,12 +35,12 @@ class BudgetController < ApplicationController
     provision = @settings[:provision].to_f
 
     case params[:type]
-    when "rate"
+    when 'rate'
       @result = {
         rate: rate,
         work_cost: work_cost
       }
-    when "issue"
+    when 'issue'
       # binding.pry
 
       if params[:issue_id].present?
@@ -61,7 +61,7 @@ class BudgetController < ApplicationController
           }
         end
       end
-    when "budget"
+    when 'budget'
       @result = []
 
       params[:estimation].each do |row|
@@ -87,7 +87,7 @@ class BudgetController < ApplicationController
 
       if params[:budget].present?
         @score = (((params[:budget].to_f / (@result.first[:middle_bid] + additional_cost)) - 1.0) * 100.0).round(2)
-        @score = [([@score, 100].min), -100].max
+        @score = [[@score, 100].min, -100].max
       end
 
       @result << {

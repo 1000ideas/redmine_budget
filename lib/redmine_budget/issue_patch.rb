@@ -35,24 +35,10 @@ module RedmineBudget
         (work_cost_sum * factor).to_f.round(2)
       end
 
-      # def lower_bid
-      #   factor = 1.0 - Setting[:plugin_redmine_budget][:budget_margin].to_f
-      #   (middle_bid * factor).to_f.round(2)
-      # end
-
-      # def middle_bid
-      #   factor = Setting[:plugin_redmine_budget][:rate_factor].to_f
-      #   (work_cost_sum * factor).to_f.round(2)
-      # end
-
-      # def upper_bid
-      #   factor = 1.0 + Setting[:plugin_redmine_budget][:budget_margin].to_f
-      #   (middle_bid * factor).to_f.round(2)
-      # end
-
       def budget_score
-        return 0 if work_cost.zero?
-        res = (((budget / work_cost) - 1.0) * 100.0).round(2)
+        cost = work_cost
+        return 0 if cost.zero?
+        res = (((budget / cost) - 1.0) * 100.0).round(2)
         return 100 if res > 100.0
         return -100 if res < -100.0
         res

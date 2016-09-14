@@ -4,7 +4,10 @@ module BudgetHelper
     hours_sum = 0
     cost_sum = 0
     time_entries.each do |time|
-      rate = Rate.order("id DESC").where(user_id: user_id, project_id: time.project_id, date_in_effect: (10.years.ago...time.created_on)).limit(1).first
+      rate = Rate.order('id DESC')
+                 .where(user_id: user_id, project_id: time.project_id, date_in_effect: (10.years.ago...time.created_on))
+                 .limit(1)
+                 .first
       rate = (rate.present? ? rate.amount.to_f : @settings[:default_rate].to_f)
 
       rate_avg << rate
