@@ -1,5 +1,4 @@
 module RedmineBudget
-
   module IssuePatch
     def self.included(base) # :nodoc:
       base.extend(ClassMethods)
@@ -23,41 +22,61 @@ module RedmineBudget
     end
 
     module InstanceMethods
-
-    	def budget
-        if (custom_field = custom_field_values.find{|cfv| cfv.custom_field.name =~ /budget/i})
-          custom_field.value.to_f
+      def budget
+        if (custom_field = custom_field_values.find { |cfv| cfv.custom_field.name =~ /budget/i })
+          custom_field.value.to_f.round(2)
         else
           nil
         end
-    	end
+      end
+
+      def work_cost
+        factor = Setting[:plugin_redmine_budget][:cost_factor].to_f
+        (work_cost_sum * factor).to_f.round(2)
+      end
+
+      # def lower_bid
+      #   factor = 1.0 - Setting[:plugin_redmine_budget][:budget_margin].to_f
+      #   (middle_bid * factor).to_f.round(2)
+      # end
+
+      # def middle_bid
+      #   factor = Setting[:plugin_redmine_budget][:rate_factor].to_f
+      #   (work_cost_sum * factor).to_f.round(2)
+      # end
+
+      # def upper_bid
+      #   factor = 1.0 + Setting[:plugin_redmine_budget][:budget_margin].to_f
+      #   (middle_bid * factor).to_f.round(2)
+      # end
 
       def budget_score
-        nil
-
+        return 0 if work_cost.zero?
+        res = (((budget / work_cost) - 1.0) * 100.0).round(2)
+        return 100 if res > 100.0
+        return -100 if res < -100.0
+        res
       end
 
       def budget_profit
-
         @settings = Setting[:plugin_redmine_budget]
 
-        rate_factor = @settings[:rate_factor].to_f
+        # rate_factor = @settings[:rate_factor].to_f
         base_rate = @settings[:default_rate].to_f
 
-        rate = ( base_rate * rate_factor ).ceil
+        # rate = (base_rate * rate_factor).ceil
 
         cost_factor = @settings[:cost_factor].to_f
-        work_cost = ( base_rate * cost_factor ).ceil
+        work_cost = (base_rate * cost_factor).ceil
 
-        profit_share = @settings[:profit_share].to_f
-        provision = @settings[:provision].to_f
+        # profit_share = @settings[:profit_share].to_f
+        # provision = @settings[:provision].to_f
 
-
-        if !spent_hours_with_children.blank? and !budget.blank?
+        if spent_hours_with_children.present? && budget.present?
           total_work_cost = spent_hours_with_children * work_cost
           additional_cost = 0
           profit = (budget - (total_work_cost + additional_cost)).ceil
-          provision = (profit * provision).ceil
+          # provision = (profit * provision).ceil
 
           # @result = {
           #   estimated: estimated_hours,
@@ -88,7 +107,26 @@ module RedmineBudget
         end
       end
 
-      
+      def work_cost_sum
+        cost_sum = 0
+        time_entries_with_children.group_by(&:user_id).each do |user_id, time_entries|
+          time_entries.each do |time|
+            rate = Rate.order('id DESC')
+                       .where(
+                         user_id: user_id,
+                         project_id: time.project_id,
+                         date_in_effect: (10.years.ago...time.created_on)
+                       )
+                       .limit(1)
+                       .first
+            rate = (rate.present? ? rate.amount.to_f : @settings[:default_rate].to_f)
+
+            cost_sum += time.hours * rate
+          end
+        end
+        cost_sum
+      end
+
       # Returns the current cost of the TimeEntry based on it's rate and hours
       #
       # Is a read-through cache method
@@ -132,8 +170,6 @@ module RedmineBudget
       #   cost(:store => false)
       #   true # for callback
       # end
-
     end
   end
-
 end

@@ -9,11 +9,11 @@
 	<div class="issue_control">
 		<h2>Kontrola budżetu</h2>
 
-		<%= text_field_tag :issue_id, "17153" %>
+		<%= text_field_tag :issue_id, params[:issue_id] || "1" %>
 		<%= javascript_tag "observeAutocompleteField('issue_id', '#{escape_javascript auto_complete_issues_path(:project_id => nil, :scope => 'system')}')" %>
 		<div class="budget_content"></div>
 	</div>
-	<div class="budget_estimation">
+	<div class="budget_estimation" data-est-budget="<%= @issue.try(:budget) %>">
 		<h2>Szacowanie budżetu</h2>
 		<h3>Czas pracy</h3>
 		<table border="1" class="estimation">
@@ -65,6 +65,10 @@
 			</tr>
 			<tr>
 				<th>Górne widełki</th>
+				<td></td>
+			</tr>
+			<tr>
+				<th>Score</th>
 				<td></td>
 			</tr>
 		</table>

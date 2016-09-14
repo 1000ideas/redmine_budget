@@ -20,17 +20,12 @@
     }
 
     BudgetPlugin.prototype._init_budget_control = function() {
-      return $('#issue_id').on('change blur', function(ev) {
-        return $.ajax(window.BudgetPlugin._budget_calculate_path + ".html", {
-          data: {
-            type: "issue",
-            issue_id: $(ev.target).val()
-          },
-          success: function(data) {
-            return $('.issue_control .budget_content', this._root).html(data);
-          }
-        });
-      });
+      this._get_issue_summary();
+      return $('#issue_id').on('change blur', (function(_this) {
+        return function(ev) {
+          return _this._get_issue_summary();
+        };
+      })(this));
     };
 
     BudgetPlugin.prototype._init_budget_calculator = function() {
@@ -75,7 +70,7 @@
     };
 
     BudgetPlugin.prototype._get_data = function() {
-      return $.ajax(window.BudgetPlugin._budget_calculate_path + ".json?type=budget", {
+      return $.ajax(window.BudgetPlugin._budget_calculate_path + ".json?type=budget&budget=" + $('.budget_estimation').data('est-budget'), {
         data: $('.budget_estimation .row input', this._root).serializeArray(),
         success: function(data) {
           var r, results, summary;
@@ -93,7 +88,20 @@
           $('tr:nth(0) td', r).text(summary.total_work_cost);
           $('tr:nth(1) td', r).text(summary.total_lower_bid);
           $('tr:nth(2) td', r).text(summary.total_middle_bid);
-          return $('tr:nth(3) td', r).text(summary.total_upper_bid);
+          $('tr:nth(3) td', r).text(summary.total_upper_bid);
+          return $('tr:nth(4) td', r).text(summary.total_score + "%");
+        }
+      });
+    };
+
+    BudgetPlugin.prototype._get_issue_summary = function() {
+      return $.ajax(window.BudgetPlugin._budget_calculate_path + ".html", {
+        data: {
+          type: "issue",
+          issue_id: $('#issue_id').val()
+        },
+        success: function(data) {
+          return $('.issue_control .budget_content', this._root).html(data);
         }
       });
     };

@@ -12,28 +12,7 @@
 <% @issue.time_entries_with_children.group_by(&:user_id).each do |user_id, time_entries| %>
 	<tr>
 		<th><%= User.find(user_id).lastname %></th>
-		<td>
-			<% 
-				rate_avg = []
-				hours_sum = 0
-				cost_sum = 0
-				time_entries.each do |time|
-					rate = Rate.order("id DESC").where(user_id: user_id, project_id: time.project_id, date_in_effect: (10.years.ago...time.created_on)).limit(1).first
-					rate = ( rate.blank? ? @settings[:default_rate].to_f : rate.amount.to_f )
-
-					rate_avg << rate
-					hours_sum += time.hours
-					cost_sum += time.hours * rate
-				end
-			%>
-			<%= rate_avg.reduce(:+) / rate_avg.size.to_f %>
-		</td>
-		<td>
-			<%= hours_sum %>
-		</td>
-		<td>
-			<%= cost_sum %>
-		</td>
+		<%= user_costs(user_id, time_entries) %>
 	</tr>
 <% end %>
 </table>
@@ -42,23 +21,23 @@
 <table border="1">
 	<tr>
 		<th>Szacowany czas: </th>
-		<td><%= @result[:estimated] %></td>
+		<td><%= @result[:estimated].to_f.round(2) %></td>
 	</tr>
 	<tr>
 		<th>Spędzony czas:</th>
-		<td><%= @result[:spent] %></td>
+		<td><%= @result[:spent].to_f.round(2) %></td>
 	</tr>
 	<tr>
 		<th>Budżet: </th>
-		<td><%= @result[:budget] %></td>
+		<td><%= @result[:budget].to_f.round(2) %></td>
 	</tr>
 	<tr>
 		<th>Zysk: </th>
-		<td><%= @result[:profit] %></td>
+		<td><%= @result[:profit].to_f.round(2) %></td>
 	</tr>
 	<tr>
 		<th>Prowizja: </th>
-		<td><%= @result[:provision] %></td>
+		<td><%= @result[:provision].to_f.round(2) %></td>
 	</tr>
 </table>
 <% else %>

@@ -10,17 +10,12 @@ class BudgetPlugin
       @_init_budget_control()
       @_init_budget_calculator()
 
-    true
+      true
 
   _init_budget_control: ->
-    $('#issue_id').on 'change blur', (ev) ->
-      $.ajax "#{window.BudgetPlugin._budget_calculate_path}.html", {
-          data: {
-            type: "issue",
-            issue_id: $(ev.target).val()
-          }
-          success: (data) -> $('.issue_control .budget_content', @._root).html(data)
-        }
+    @._get_issue_summary()
+    $('#issue_id').on 'change blur', =>
+      @._get_issue_summary()
 
   _init_budget_calculator: ->
     $('table', @._root).each (i, e) =>
@@ -52,12 +47,12 @@ class BudgetPlugin
       alert("Can't remove last row")
 
   _get_data: ->
-    $.ajax "#{window.BudgetPlugin._budget_calculate_path}.json?type=budget", {
+    $.ajax "#{window.BudgetPlugin._budget_calculate_path}.json?type=budget&budget=#{$('.budget_estimation').data('est-budget')}", {
         data: $('.budget_estimation .row input', @._root).serializeArray(),
         success: (data) ->
           results = $(data)
           summary = results.splice(-1)[0]
-          results.each (i, e) -> 
+          results.each (i, e) ->
             r = $(".budget_estimation .row:nth(#{i})", @._root)
             $('td:nth(2)', r).text( e.work_cost )
             $('td:nth(3)', r).text( e.lower_bid )
@@ -69,9 +64,17 @@ class BudgetPlugin
           $('tr:nth(1) td', r).text( summary.total_lower_bid )
           $('tr:nth(2) td', r).text( summary.total_middle_bid )
           $('tr:nth(3) td', r).text( summary.total_upper_bid )
-
+          $('tr:nth(4) td', r).text( summary.total_score + "%" )
       }
-    
 
-window.BudgetPlugin = new BudgetPlugin()
+  _get_issue_summary: ->
+    $.ajax "#{window.BudgetPlugin._budget_calculate_path}.html", {
+      data: {
+        type: "issue",
+        issue_id: $('#issue_id').val()
+      }
+      success: (data) -> $('.issue_control .budget_content', @._root).html(data)
+    }
 
+$(document).on 'ready page:load', ->
+  window.BudgetPlugin = new BudgetPlugin()

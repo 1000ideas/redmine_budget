@@ -10,20 +10,21 @@ Redmine::Plugin.register :redmine_budget do
   url 'http://1000i.pl'
   author_url 'http://1000i.pl'
 
-  settings default: { 
-              rate_factor: 2,
-              cost_factor: 1.5,
-              default_rate: 20,
-              profit_share: 0.16,
-              provision: 0.1,
-              tracker_id: Tracker.first.id
-            },
-            partial: 'redmine_budget/settings'
+  settings(
+    default: {
+      rate_factor: 2,
+      cost_factor: 1.5,
+      default_rate: 20,
+      profit_share: 0.16,
+      margin: 0.15,
+      provision: 0.1,
+      tracker_id: Tracker.first.id
+    },
+    partial: 'redmine_budget/settings'
+  )
 end
-
 
 Rails.configuration.to_prepare do
   TimeEntry.send(:include, RedmineBudget::TimeEntryPatch) unless TimeEntry.included_modules.include? RedmineBudget::TimeEntryPatch
   Issue.send(:include, RedmineBudget::IssuePatch) unless Issue.included_modules.include? RedmineBudget::IssuePatch
 end
-
