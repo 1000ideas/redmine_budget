@@ -13,10 +13,10 @@ class BudgetController < ApplicationController
     @issue = Issue.find(params[:issue_id]) if params[:issue_id].present?
   end
 
-  def user
+  def issues
     @settings = Setting[:plugin_redmine_budget]
-    @user = User.find(params[:id])
-    @issues = Issue.where(tracker_id: @settings[:tracker_id] || 5, assigned_to_id: params[:id])
+    @issues = Issue.where(tracker_id: @settings[:tracker_id] || 5) # TODO: remove closed issues and so on
+    apply_filter if view_context.filter_options.include? params[:filter_option]
   end
 
   def calculate
@@ -41,8 +41,6 @@ class BudgetController < ApplicationController
         work_cost: work_cost
       }
     when 'issue'
-      # binding.pry
-
       if params[:issue_id].present?
         @issue = Issue.where(id: params[:issue_id]).first
 
@@ -102,6 +100,19 @@ class BudgetController < ApplicationController
     respond_to do |format|
       format.html { render layout: false }
       format.json { render json: @result }
+    end
+  end
+
+  private
+
+  def apply_filter
+    case params[:filter_option]
+    when 'Project'
+      @issues = @issues.where(project_id: params[:filter_value])
+    when 'Category'
+      @issues = @issues.where(category_id: params[:filter_value])
+    when 'Assignee'
+      @issues = @issues.where(assigned_to_id: params[:filter_value])
     end
   end
 end

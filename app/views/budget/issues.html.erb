@@ -1,0 +1,101 @@
+<% html_title l(:budget_title) %>
+
+<% content_for :header_tags do %>
+  <%= javascript_include_tag 'jquery-throttle.min.js', 'budget_helper', 'budget', :plugin => 'redmine_budget' %>
+  <%= stylesheet_link_tag 'budget', :plugin => 'redmine_budget' %>
+<% end %>
+
+<% if false %>
+<form accept-charset="UTF-8" action="/budget/issues" id="query_form" method="get">
+  <fieldset id="filters" class="collapsible ">
+    <legend onclick="toggleFieldset(this);" class="fa fa-minus-square">Filters</legend>
+
+    <div style="">
+      <table>
+        <tbody>
+          <tr>
+            <td><label for="group_by">Group results by</label></td>
+            <td>
+              <select id="group_by" name="group_by">
+                <option value="">&nbsp;</option>
+                <option value="project">Project</option>
+                <option value="tracker">Tracker</option>
+                <option value="status">Status</option>
+                <option value="priority">Priority</option>
+                <option value="author">Author</option>
+                <option value="assigned_to">Assignee</option>
+                <option value="category">Category</option>
+                <option value="fixed_version">Target version</option>
+                <option value="done_ratio">% Done</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Show</td>
+            <td><label class="inline"><input name="c[]" type="checkbox" value="description"> Description</label></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </fieldset>
+    <p class="buttons hide-when-print">
+      <a class="icon icon-checked fa fa-check" href="#" onclick="submit_query_form(&quot;query_form&quot;); return false;">Apply</a>
+      <a href="/?set_filter=1" class="icon fa fa-times">Clear</a>
+      <a class="icon icon-save fa fa-floppy-o" href="#" onclick="$('#query_form').attr('action', '/queries/new'); submit_query_form('query_form'); return false;">Save</a>
+    </p>
+</form>
+<% end %>
+
+<%= form_tag budget_issues_path, id: 'budget-query-form', method: :get do %>
+  <div id="filter-options">
+    <%= label_tag 'filter_option', 'Filter option' %>
+    <%= select_tag 'filter_option', options_for_select(filter_options) %>
+  </div>
+  <div id="filter-project" class="filter-values">
+    <%= label_tag 'filter_value', 'Filter value' %>
+    <%= select_tag 'filter_value', options_for_select(filter_values('Project')) %>
+  </div>
+  <div id="filter-assignee" class="filter-values" style="display: none;">
+    <%= label_tag 'filter_value', 'Filter value' %>
+    <%= select_tag 'filter_value', options_for_select(filter_values('User')) %>
+  </div>
+  <div>
+    <%= submit_tag 'Filter' %>
+  </div>
+
+<% end %>
+
+<div class="redmine_budget">
+  <div class="issue_control">
+    <h2>Zadania typu Budget</h2>
+
+    <table border="1" class="estimation">
+      <tr class="header">
+        <th>Zadanie</th>
+        <th>Budget</th>
+        <th>Koszty pracy</th>
+        <th>Time Burned</th>
+        <th>Score</th>
+        <th>Profit</th>
+        <th>Project</th>
+        <th>Category</th>
+        <th>Assignee</th>
+      </tr>
+      <% @issues.each do |issue| %>
+      <tr class="row">
+        <td><%= link_to "#{issue_link(issue)}", budget_path(issue_id: issue.id), target: '_blank' %></td>
+        <td><%= issue.budget %></td>
+        <td><%= issue.work_cost %></td>
+        <td><%= issue.spent_hours_with_children.to_f.round(2) %></td>
+        <td><%= issue.budget_score %> %</td>
+        <td><%= issue.budget_profit %></td>
+        <td><%= issue.project.name %></td>
+        <td><%= issue.category.try(:name) %></td>
+        <td><%= issue.assigned_to %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+

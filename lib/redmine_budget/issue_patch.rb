@@ -6,6 +6,7 @@ module RedmineBudget
 
       base.class_eval do
         unloadable # Send unloadable so it will not be unloaded in development
+        has_many :additional_costs
         # belongs_to :rate
         # before_save :recalculate_cost
       end
@@ -22,6 +23,10 @@ module RedmineBudget
     end
 
     module InstanceMethods
+      def budget?
+        tracker_id.to_i == Setting[:plugin_redmine_budget][:tracker_id].to_i
+      end
+
       def budget
         if (custom_field = custom_field_values.find { |cfv| cfv.custom_field.name =~ /budget/i })
           custom_field.value.to_f.round(2)

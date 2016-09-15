@@ -8,16 +8,27 @@
       jQuery((function(_this) {
         return function() {
           _this._root = $('.redmine_budget');
+          _this._query_form = $('#budget-query-form')
           if (_this._root.length === 0) {
             return;
           }
           _this._budget_calculate_path = $('.redmine_budget').data('budget-calculate-path');
+          _this._init_filtering();
           _this._init_budget_control();
           return _this._init_budget_calculator();
         };
       })(this));
       true;
     }
+
+    BudgetPlugin.prototype._init_filtering = function() {
+      this._change_filter_values();
+      $('#filter-options select', this._query_form).on('change', (function(_this) {
+        return function() {
+          return _this._change_filter_values();
+        };
+      })(this));
+    };
 
     BudgetPlugin.prototype._init_budget_control = function() {
       this._get_issue_summary();
@@ -104,6 +115,18 @@
           return $('.issue_control .budget_content', this._root).html(data);
         }
       });
+    };
+
+    BudgetPlugin.prototype._change_filter_values = function() {
+      var op;
+      op = $('#filter-options select', this._query_form).val();
+      $('.filter-values').each(function(idx, el) {
+        $('select', $(el)).prop('disabled', true);
+        return $(el).hide();
+      });
+
+      $("#filter-" + (op.toLowerCase()) + ' select').prop('disabled', false);
+      return $("#filter-" + (op.toLowerCase())).show();
     };
 
     return BudgetPlugin;

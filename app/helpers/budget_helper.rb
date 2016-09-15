@@ -25,4 +25,13 @@ module BudgetHelper
   def issue_link(issue)
     "##{issue.id} #{issue.subject}"
   end
+
+  def filter_options
+    ['Project', 'Assignee']
+  end
+
+  def filter_values(op)
+    return nil unless ['Project', 'User'].include? op
+    op.constantize.all.inject([]) { |res, obj| res << [obj.name, obj.id] }
+  end
 end

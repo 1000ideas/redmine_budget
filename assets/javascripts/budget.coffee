@@ -3,14 +3,21 @@ class BudgetPlugin
   constructor: ->
     jQuery =>
       @._root = $('.redmine_budget')
+      @._query_form = $('#budget-query-form')
       return if @._root.length == 0
 
       @._budget_calculate_path = $('.redmine_budget').data('budget-calculate-path')
 
-      @_init_budget_control()
-      @_init_budget_calculator()
+      @._init_filtering()
+      @._init_budget_control()
+      @._init_budget_calculator()
 
       true
+
+  _init_filtering: ->
+    @._change_filter_values()
+    $('#filter-options select', @._query_form).on 'change', =>
+      @._change_filter_values()
 
   _init_budget_control: ->
     @._get_issue_summary()
@@ -75,6 +82,14 @@ class BudgetPlugin
       }
       success: (data) -> $('.issue_control .budget_content', @._root).html(data)
     }
+
+  _change_filter_values: ->
+    op = $('#filter-options select', @._query_form).val()
+    $('.filter-values', @._query_form).each (idx, el) ->
+      $('select', $(el)).prop('disabled', true)
+      $(el).hide()
+    $("#filter-#{op.toLowerCase()}", @._query_form).show()
+    $("#filter-#{op.toLowerCase()} select", @._query_form).prop('disabled', false).show()
 
 $(document).on 'ready page:load', ->
   window.BudgetPlugin = new BudgetPlugin()

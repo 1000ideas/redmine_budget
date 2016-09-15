@@ -1,6 +1,6 @@
 require_dependency 'redmine_budget/time_entry_patch'
 require_dependency 'redmine_budget/issue_patch'
-require_dependency 'redmine_budget_hook_listener'
+require_dependency 'redmine_budget/redmine_budget_hook_listener'
 
 Redmine::Plugin.register :redmine_budget do
   name 'Redmine Budget plugin'
