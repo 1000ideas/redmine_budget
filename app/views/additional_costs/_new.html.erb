@@ -5,10 +5,11 @@
     <% @issue.additional_costs.each do |cost| %>
       <%= render partial: 'additional_costs/cost', locals: { cost: cost } %>
     <% end %>
+
+    <%= render partial: 'additional_costs/form' %>
   </div>
 <% end %>
 
-<%= render partial: 'additional_costs/form' %>
 
 <%# content_for :header_tags do %>
   <%#= javascript_include_tag 'additional_costs', plugin: 'redmine_budget' %>
