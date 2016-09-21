@@ -1,13 +1,13 @@
-<% if @result.has_key?(:estimated) %>
-<h3>Podsumowanie</h3>
-<h2>Zalogowany czas</h2>
+<% if @result.key?(:estimated) %>
+<h3><%= t('.summary') %></h3>
+<h2><%= t('.log_time') %></h2>
 
 <table border="1">
 	<tr>
-		<th>Użytkownik</th>
-		<th>Średnia Stawka</th>
-		<th>Łączny czas</th>
-		<th>Łączny koszt</th>
+		<th><%= t('.user') %></th>
+		<th><%= t('.avg_rate') %></th>
+		<th><%= t('.time_sum') %></th>
+		<th><%= t('.cost_sum') %></th>
 	</tr>
 <% @issue.time_entries_with_children.group_by(&:user_id).each do |user_id, time_entries| %>
 	<tr>
@@ -17,31 +17,31 @@
 <% end %>
 </table>
 
-<h2>Zrealizowany budżet</h2>
+<h2><%= t('.realized') %></h2>
 <table border="1">
 	<tr>
-		<th>Szacowany czas: </th>
+		<th><%= t('.est_time') %></th>
 		<td><%= @result[:estimated].to_f.round(2) %></td>
 	</tr>
 	<tr>
-		<th>Spędzony czas:</th>
+		<th><%= t('.spent_time') %></th>
 		<td><%= @result[:spent].to_f.round(2) %></td>
 	</tr>
 	<tr>
-		<th>Budżet: </th>
+		<th><%= t('.budget') %></th>
 		<td><%= @result[:budget].to_f.round(2) %></td>
 	</tr>
 	<tr>
-		<th>Zysk: </th>
+		<th><%= t('.profit') %></th>
 		<td><%= @result[:profit].to_f.round(2) %></td>
 	</tr>
 	<tr>
-		<th>Prowizja: </th>
+		<th><%= t('.provision') %></th>
 		<td><%= @result[:provision].to_f.round(2) %></td>
 	</tr>
 </table>
 <% else %>
-<p>Zadanie <%= params[:issue_id] %> musi mieć określone Szacowany czas, Budget i Stawki godzinowe</p>
+<p><%= t('.disclaimer', id: params[:issue_id]) %></p>
 <% end %>
 <br />
 <br />

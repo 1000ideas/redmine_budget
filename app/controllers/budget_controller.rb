@@ -15,7 +15,8 @@ class BudgetController < ApplicationController
   end
 
   def issues
-    @issues = Issue.where(tracker_id: @settings[:tracker_id] || 5) # TODO: remove closed issues and so on
+    @issues = Issue.where(tracker_id: @settings[:tracker_id] || 5)
+    exclude_issues
     apply_filter if view_context.filter_options.include? params[:filter_option]
   end
 
@@ -92,7 +93,7 @@ class BudgetController < ApplicationController
         total_lower_bid: @result.sum { |row| row[:lower_bid] } + additional_cost,
         total_middle_bid: @result.sum { |row| row[:middle_bid] } + additional_cost,
         total_upper_bid: @result.sum { |row| row[:upper_bid] } + additional_cost,
-        total_score: @score
+        total_score: @score || 0
       }
     end
 
@@ -117,5 +118,10 @@ class BudgetController < ApplicationController
     when 'Assignee'
       @issues = @issues.where(assigned_to_id: params[:filter_value])
     end
+  end
+
+  def exclude_issues
+    closed = IssueStatus.find { |status| status.is_closed == true }.try(:id)
+    @issues = @issues.where('status_id != ?', closed) unless closed.nil?
   end
 end

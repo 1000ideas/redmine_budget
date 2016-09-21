@@ -1,4 +1,4 @@
-<% html_title l(:budget_title) %>
+<% html_title t('redmine_budget.settings.budget_title') %>
 
 <% content_for :header_tags do %>
   <%= javascript_include_tag 'jquery-throttle.min.js', 'budget_helper', 'budget', :plugin => 'redmine_budget' %>
@@ -7,23 +7,23 @@
 
 <div class="redmine_budget" data-budget-calculate-path="<%= budget_calculate_path %>">
 	<div class="issue_control">
-		<h2>Kontrola budżetu</h2>
+		<h2><%= t('.budget_control') %></h2>
 
-		<%= text_field_tag :issue_id, params[:issue_id] || "24" %>
+		<%= text_field_tag :issue_id, params[:issue_id] %>
 		<%= javascript_tag "observeAutocompleteField('issue_id', '#{escape_javascript auto_complete_issues_path(:project_id => nil, :scope => 'system')}')" %>
 		<div class="budget_content"></div>
 	</div>
 	<div class="budget_estimation" data-est-budget="<%= @issue.try(:budget) %>">
-		<h2>Szacowanie budżetu</h2>
-		<h3>Czas pracy</h3>
+		<h2><%= t('.budget_estimation') %></h2>
+		<h3><%= t('.work_time') %></h3>
 		<table border="1" class="estimation">
 			<tr class="header">
-				<th>Ilosć godzin</th>
-				<th>Stawka</th>
-				<th>Koszt pracy</th>
-				<th>Dolne widełki</th>
-				<th>Potrzebny budżet</th>
-				<th>Górne widełki</th>
+				<th><%= t('.hours') %></th>
+				<th><%= t('.rate') %></th>
+				<th><%= t('.work_cost') %></th>
+				<th><%= t('.lower_bid') %></th>
+				<th><%= t('.middle_bid') %></th>
+				<th><%= t('.upper_bid') %></th>
 				<th></th>
 			</tr>
 			<tr class="row">
@@ -36,11 +36,11 @@
 				<td><a href="javascript: void(0);" class="remove">&times;</a></td>
 			</tr>
 		</table>
-		<h3>Koszty dodatkowe</h3>
+		<h3><%= t('.add_cost') %></h3>
 		<table border="1" class="additionals">
 			<tr class="header">
-				<th>Nazwa</th>
-				<th>Koszt</th>
+				<th><%= t('.cost_name') %></th>
+				<th><%= t('.cost_cost') %></th>
 				<th></th>
 			</tr>
 			<tr class="row">
@@ -49,26 +49,26 @@
 				<td><a href="javascript: void(0);" class="remove">&times;</a></td>
 			</tr>
 		</table>
-		<h3>Podsumowanie</h3>
+		<h3><%= t('.summary') %></h3>
 		<table border="1" class="summary">
 			<tr>
-				<th>Koszt pracy</th>
+				<th><%= t('.work_cost') %></th>
 				<td></td>
 			</tr>
 			<tr>
-				<th>Dolne widełki</th>
+				<th><%= t('.lower_bid') %></th>
 				<td></td>
 			</tr>
 			<tr>
-				<th>Potrzebny budżet</th>
+				<th><%= t('.middle_bid') %></th>
 				<td></td>
 			</tr>
 			<tr>
-				<th>Górne widełki</th>
+				<th><%= t('.upper_bid') %></th>
 				<td></td>
 			</tr>
 			<tr>
-				<th>Score</th>
+				<th><%= t('.score') %></th>
 				<td></td>
 			</tr>
 		</table>

@@ -1,2 +1,65 @@
 pl:
-  tracker: "Nazwa trackera"
+  redmine_budget:
+    settings:
+      budget_title: "1000ideas Budget Redmine plugin"
+      tracker: "Nazwa typu zagadnienia Budget"
+      rate_factor: "Współczynnik do szacowania"
+      cost_factor: "Współczynnik kosztu"
+      default_rate: "Domyślna stawka"
+      profit_share: "Udział w zyskach"
+      margin: "Margines szacowania"
+      provision: "Prowizja"
+  budget:
+    index:
+      budget_control: Kontrola budżetu
+      budget_estimation: Szacowanie budżetu
+      work_time: Czas pracy
+      hours: Godziny
+      rate: Płaca
+      work_cost: Koszt pracy
+      lower_bid: Dolne widełki
+      middle_bid: Potrzebny budżet
+      upper_bid: Górne widełki
+      add_cost: Dodatkowe koszta
+      cost_name: Nazwa
+      cost_cost: Koszt
+      summary: Podsumowanie
+      score: Wynik
+    calculate:
+      summary: Podsumowanie
+      log_time: Zalogowany czas
+      user: Użytkownik
+      avg_rate: Średnia stawka
+      time_sum: Łączny czas
+      cost_sum: Łączny koszt
+      realized: Zrealizowany budzet
+      est_time: Szacowany czas
+      spent_time: Spędzony czas
+      budget: Budżet
+      profit: Profit
+      provision: Prowizja
+      disclaimer: "Zadanie %{id} musi mieć zdefiniowane: szacowany czas, budżet i stawki godzinowe"
+    issues:
+      filter_option: Filtruj według
+      filter_value: Wartość
+      filter: Filtruj
+      show_all: Pokaż wszystkie
+      budget_issues: Zadania typu Budget
+      issue: Zadanie
+      budget: Budżet
+      work_cost: Koszta pracy
+      add_cost: Dodatkowe koszta
+      time_burned: Zalogowany czas
+      score: Wynik
+      profit: Profit
+      project: Projekt
+      category: Kategoria
+      assignee: Przypisane do
+  additional_costs:
+    new:
+      title: Dodatkowe koszta
+    show:
+      title: Dodatkowe koszta
+    form:
+      name: Nazwa
+      cost: Cena

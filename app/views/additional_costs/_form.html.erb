@@ -1,6 +1,6 @@
 <div id="additional-costs-form">
-  <%= text_field_tag 'additional_cost[name]', '', placeholder: 'Nazwa' %>
-  <%= text_field_tag 'additional_cost[cost]', '', placeholder: 'Cena' %>
+  <%= text_field_tag 'additional_cost[name]', '', placeholder: t('.name') %>
+  <%= text_field_tag 'additional_cost[cost]', '', placeholder: t('.cost') %>
   <%= link_to 'javascript: void(0);', id: 'add-new-cost' do %>
     <span class='icon icon-add fa fa-plus-circle'></span>
   <% end %>

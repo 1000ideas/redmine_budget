@@ -1,10 +1,66 @@
 # English strings go here for Rails i18n
 en:
-  budget_title: "1000ideas Budget Redmine plugin"
-  tracker: "Budget tracker name"
-  rate_factor: "Rate factor"
-  cost_factor: "Cost factor"
-  default_rate: "Default rate"
-  profit_share: "Profit share"
-  margin: "Budget margin"
-  provision: "Provision"
+  redmine_budget:
+    settings:
+      budget_title: "1000ideas Budget Redmine plugin"
+      tracker: "Budget tracker name"
+      rate_factor: "Rate factor"
+      cost_factor: "Cost factor"
+      default_rate: "Default rate"
+      profit_share: "Profit share"
+      margin: "Budget margin"
+      provision: "Provision"
+  budget:
+    index:
+      budget_control: Budget control
+      budget_estimation: Budget estimation
+      work_time: Work time
+      hours: Hours
+      rate: Rate
+      work_cost: Work cost
+      lower_bid: Lower bid
+      middle_bid: Needed budget
+      upper_bid: Upper bid
+      add_cost: Additional costs
+      cost_name: Name
+      cost_cost: Cost
+      summary: Summary
+      score: Score
+    calculate:
+      summary: Summary
+      log_time: Logged time
+      user: User
+      avg_rate: Average rate
+      time_sum: Overall time
+      cost_sum: Overall cost
+      realized: Realized budget
+      est_time: Estimated time
+      spent_time: Spent time
+      budget: Budget
+      profit: Profit
+      provision: Provision
+      disclaimer: "Issue %{id} must have Estimated Time, Budget and Rates specified"
+    issues:
+      filter_option: Filter option
+      filter_value: Filter value
+      filter: Filter
+      show_all: Show all
+      budget_issues: Budget issues
+      issue: Issue
+      budget: Budget
+      work_cost: Work costs
+      add_cost: Additional costs
+      time_burned: Time burned
+      score: Score
+      profit: Profit
+      project: Project
+      category: Category
+      assignee: Assignee
+  additional_costs:
+    new:
+      title: Additional costs
+    show:
+      title: Additional costs
+    form:
+      name: Name
+      cost: Cost
