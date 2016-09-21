@@ -40,8 +40,12 @@ module RedmineBudget
         (work_cost_sum * factor).to_f.round(2)
       end
 
+      def add_cost
+        additional_costs.sum(&:cost).round(2)
+      end
+
       def budget_score
-        cost = work_cost
+        cost = work_cost + add_cost
         return 0 if cost.zero?
         res = (((budget / cost) - 1.0) * 100.0).round(2)
         return 100 if res > 100.0
@@ -50,36 +54,37 @@ module RedmineBudget
       end
 
       def budget_profit
-        @settings = Setting[:plugin_redmine_budget]
+        # @settings = Setting[:plugin_redmine_budget]
 
-        # rate_factor = @settings[:rate_factor].to_f
-        base_rate = @settings[:default_rate].to_f
+        # # rate_factor = @settings[:rate_factor].to_f
+        # base_rate = @settings[:default_rate].to_f
 
-        # rate = (base_rate * rate_factor).ceil
+        # # rate = (base_rate * rate_factor).ceil
 
-        cost_factor = @settings[:cost_factor].to_f
-        work_cost = (base_rate * cost_factor).ceil
+        # cost_factor = @settings[:cost_factor].to_f
+        # work_cost = (base_rate * cost_factor).ceil
 
-        # profit_share = @settings[:profit_share].to_f
-        # provision = @settings[:provision].to_f
+        # # profit_share = @settings[:profit_share].to_f
+        # # provision = @settings[:provision].to_f
 
-        if spent_hours_with_children.present? && budget.present?
-          total_work_cost = spent_hours_with_children * work_cost
-          additional_cost = 0
-          profit = (budget - (total_work_cost + additional_cost)).ceil
-          # provision = (profit * provision).ceil
+        # if spent_hours_with_children.present? && budget.present?
+        #   total_work_cost = spent_hours_with_children * work_cost
+        #   additional_cost = 0
+        #   profit = (budget - (total_work_cost + additional_cost)).ceil
+        #   # provision = (profit * provision).ceil
 
-          # @result = {
-          #   estimated: estimated_hours,
-          #   spent: spent_hours_with_children,
-          #   budget: budget,
-          #   profit: profit,
-          #   provision: provision
-          # }
-          profit
-        else
-          nil
-        end
+        #   # @result = {
+        #   #   estimated: estimated_hours,
+        #   #   spent: spent_hours_with_children,
+        #   #   budget: budget,
+        #   #   profit: profit,
+        #   #   provision: provision
+        #   # }
+        #   profit
+        # else
+        #   nil
+        # end
+        budget - (work_cost + add_cost)
       end
 
       def spent_hours_with_children

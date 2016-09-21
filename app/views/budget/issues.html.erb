@@ -2,7 +2,7 @@
 
 <% content_for :header_tags do %>
   <%= javascript_include_tag 'jquery-throttle.min.js', 'budget_helper', 'budget', :plugin => 'redmine_budget' %>
-  <%= stylesheet_link_tag 'budget', :plugin => 'redmine_budget' %>
+  <%= stylesheet_link_tag 'budget_issues', :plugin => 'redmine_budget' %>
 <% end %>
 
 <% if false %>
@@ -66,6 +66,8 @@
 
 <% end %>
 
+<%= button_to 'Show All', budget_issues_path, method: :get %>
+
 <div class="redmine_budget">
   <div class="issue_control">
     <h2>Zadania typu Budget</h2>
@@ -75,6 +77,7 @@
         <th>Zadanie</th>
         <th>Budget</th>
         <th>Koszty pracy</th>
+        <th>Dodatkowe koszta</th>
         <th>Time Burned</th>
         <th>Score</th>
         <th>Profit</th>
@@ -87,6 +90,7 @@
         <td><%= link_to "#{issue_link(issue)}", budget_path(issue_id: issue.id), target: '_blank' %></td>
         <td><%= issue.budget %></td>
         <td><%= issue.work_cost %></td>
+        <td><%= issue.add_cost %></td>
         <td><%= issue.spent_hours_with_children.to_f.round(2) %></td>
         <td><%= issue.budget_score %> %</td>
         <td><%= issue.budget_profit %></td>

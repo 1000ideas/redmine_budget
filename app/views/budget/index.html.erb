@@ -9,7 +9,7 @@
 	<div class="issue_control">
 		<h2>Kontrola budżetu</h2>
 
-		<%= text_field_tag :issue_id, params[:issue_id] || "1" %>
+		<%= text_field_tag :issue_id, params[:issue_id] || "24" %>
 		<%= javascript_tag "observeAutocompleteField('issue_id', '#{escape_javascript auto_complete_issues_path(:project_id => nil, :scope => 'system')}')" %>
 		<div class="budget_content"></div>
 	</div>

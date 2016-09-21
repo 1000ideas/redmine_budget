@@ -8,20 +8,19 @@ class BudgetController < ApplicationController
 
   # accept_api_auth :check_for_new_deals
 
+  before_filter :find_settings, only: [:index, :issues, :calculate]
+
   def index
-    @settings = Setting[:plugin_redmine_budget]
     @issue = Issue.find(params[:issue_id]) if params[:issue_id].present?
   end
 
   def issues
-    @settings = Setting[:plugin_redmine_budget]
     @issues = Issue.where(tracker_id: @settings[:tracker_id] || 5) # TODO: remove closed issues and so on
     apply_filter if view_context.filter_options.include? params[:filter_option]
   end
 
   def calculate
     @result = {}
-    @settings = Setting[:plugin_redmine_budget]
 
     rate_factor = @settings[:rate_factor].to_f
     base_rate = params.key?(:rate) ? params[:rate].to_f : @settings[:default_rate].to_f
@@ -104,6 +103,10 @@ class BudgetController < ApplicationController
   end
 
   private
+
+  def find_settings
+    @settings = Setting[:plugin_redmine_budget]
+  end
 
   def apply_filter
     case params[:filter_option]

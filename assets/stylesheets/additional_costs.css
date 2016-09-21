@@ -1,18 +1,15 @@
+/* line 2, additional_costs.sass */
 .issue-additional-costs .cost-name,
 .issue-additional-costs .cost-cost {
-  border: 1px solid #e6eaef;
-  background: #fff;
   min-width: 110px;
   max-width: 360px;
   display: inline-block;
-  height: 29.25px;
-  padding: 0 9.75px;
-  color: #555;
+  color: #555555;
   vertical-align: middle;
   margin-top: 1px;
   margin-bottom: 1px;
 }
-
+/* line 11, additional_costs.sass */
 .issue-additional-costs .cost-del {
   display: inline-block;
 }
