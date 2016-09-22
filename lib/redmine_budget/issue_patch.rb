@@ -115,7 +115,7 @@ module RedmineBudget
                        )
                        .limit(1)
                        .first
-            rate = (rate.present? ? rate.amount.to_f : @settings[:default_rate].to_f)
+            rate = (rate.present? ? rate.amount.to_f : Setting[:plugin_redmine_budget][:default_rate].to_f)
 
             cost_sum += time.hours * rate
           end
