@@ -1,0 +1,35 @@
+<div id="manage-display">
+  <%= form_tag budget_issues_path, id: 'budget-query-form', method: :get do %>
+    <div id="filter-options" class="filter-part">
+      <div class="label-wrapper">
+        <%= label_tag 'filter_option', t('budget.issues.filter_option') %>
+      </div>
+      <div class="select-wrapper">
+        <%= select_tag 'filter_option', options_for_select(filter_options) %>
+      </div>
+    </div>
+    <div id="filter-project" class="filter-values filter-part">
+      <div class="label-wrapper">
+        <%= label_tag 'filter_value', t('budget.issues.filter_value') %>
+      </div>
+      <div class="select-wrapper">
+        <%= select_tag 'filter_value', options_for_select(filter_values('Project')) %>
+      </div>
+    </div>
+    <% if @user_manager %>
+      <div id="filter-assignee" class="filter-values filter-part" style="display: none;">
+        <div class="label-wrapper">
+          <%= label_tag 'filter_value', t('budget.issues.filter_value') %>
+        </div>
+        <div class="select-wrapper">
+          <%= select_tag 'filter_value', options_for_select(filter_values('User')) %>
+        </div>
+      </div>
+    <% end %>
+    <div id="filter-button" class="filter-part">
+      <%= submit_tag t('budget.issues.filter') %>
+    </div>
+  <% end %>
+
+  <%= button_to t('budget.issues.show_all'), budget_issues_path, method: :get %>
+</div>

@@ -7,15 +7,9 @@ class BudgetPlugin
 
       @._budget_calculate_path = $('.redmine_budget').data('budget-calculate-path')
 
-      @._init_budget_control()
       @._init_budget_calculator()
 
       true
-
-  _init_budget_control: ->
-    @._get_issue_summary()
-    $('#issue_id').on 'change blur', =>
-      @._get_issue_summary()
 
   _init_budget_calculator: ->
     $('table', @._root).each (i, e) =>
@@ -64,18 +58,7 @@ class BudgetPlugin
           $('tr:nth(1) td', r).text( summary.total_lower_bid )
           $('tr:nth(2) td', r).text( summary.total_middle_bid )
           $('tr:nth(3) td', r).text( summary.total_upper_bid )
-          $('tr:nth(4) td', r).text( summary.total_score + "%" )
       }
-
-  _get_issue_summary: ->
-    $.ajax "#{window.BudgetPlugin._budget_calculate_path}.html", {
-      data: {
-        type: "issue",
-        issue_id: $('#issue_id').val()
-      }
-      success: (data) ->
-        $('.issue_control .budget_content', @._root).html(data)
-    }
 
 $(document).on 'ready page:load', ->
   window.BudgetPlugin = new BudgetPlugin()

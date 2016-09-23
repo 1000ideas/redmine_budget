@@ -11,9 +11,11 @@
 	</tr>
 <% @issue.time_entries_with_children.group_by(&:user_id).each do |user_id, time_entries| %>
 	<tr>
-		<th><%= User.find(user_id).lastname %></th>
-		<%= user_costs(user_id, time_entries) %>
-	</tr>
+    <td style="font-weight: bold;"><%= User.find(user_id).lastname %></td>
+    <% @issue.count_costs(user_id, time_entries).each do |cost| %>
+      <%= content_tag :td, cost %>
+    <% end %>
+  </tr>
 <% end %>
 </table>
 

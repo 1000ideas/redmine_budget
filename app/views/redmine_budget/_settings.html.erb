@@ -6,6 +6,12 @@
         <%= select_tag "settings[tracker_id]", options_from_collection_for_select(Tracker.all, :id, :name, settings[:tracker_id]) %>
       </td>
     </tr>
+    <tr class="budget-group">
+      <th><%= l(:managers_group) %></th>
+      <td>
+        <%= select_tag "settings[group_id]", options_from_collection_for_select(Group.all, :id, :name, settings[:group_id]) %>
+      </td>
+    </tr>
     <tr class="budget-rate_factor">
       <th><%= l(:rate_factor) %></th>
       <td>

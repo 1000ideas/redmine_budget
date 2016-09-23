@@ -12,21 +12,11 @@
             return;
           }
           _this._budget_calculate_path = $('.redmine_budget').data('budget-calculate-path');
-          _this._init_budget_control();
           return _this._init_budget_calculator();
         };
       })(this));
       true;
     }
-
-    BudgetPlugin.prototype._init_budget_control = function() {
-      this._get_issue_summary();
-      return $('#issue_id').on('change blur', (function(_this) {
-        return function(ev) {
-          return _this._get_issue_summary();
-        };
-      })(this));
-    };
 
     BudgetPlugin.prototype._init_budget_calculator = function() {
       $('table', this._root).each((function(_this) {
@@ -88,20 +78,7 @@
           $('tr:nth(0) td', r).text(summary.total_work_cost);
           $('tr:nth(1) td', r).text(summary.total_lower_bid);
           $('tr:nth(2) td', r).text(summary.total_middle_bid);
-          $('tr:nth(3) td', r).text(summary.total_upper_bid);
-          return $('tr:nth(4) td', r).text(summary.total_score + "%");
-        }
-      });
-    };
-
-    BudgetPlugin.prototype._get_issue_summary = function() {
-      return $.ajax(window.BudgetPlugin._budget_calculate_path + ".html", {
-        data: {
-          type: "issue",
-          issue_id: $('#issue_id').val()
-        },
-        success: function(data) {
-          return $('.issue_control .budget_content', this._root).html(data);
+          return $('tr:nth(3) td', r).text(summary.total_upper_bid);
         }
       });
     };

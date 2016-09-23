@@ -23,16 +23,15 @@ class BudgetController < ApplicationController
   def calculate
     @result = {}
 
+    cost_factor = @settings[:cost_factor].to_f
     rate_factor = @settings[:rate_factor].to_f
     base_rate = params.key?(:rate) ? params[:rate].to_f : @settings[:default_rate].to_f
 
     rate = (base_rate * rate_factor).ceil
-
-    cost_factor = @settings[:cost_factor].to_f
     work_cost = (base_rate * cost_factor).ceil
 
     # profit_share = @settings[:profit_share].to_f
-    provision = @settings[:provision].to_f
+    # provision = @settings[:provision].to_f
 
     case params[:type]
     when 'rate'
@@ -40,61 +39,8 @@ class BudgetController < ApplicationController
         rate: rate,
         work_cost: work_cost
       }
-    when 'issue'
-      if params[:issue_id].present?
-        @issue = Issue.where(id: params[:issue_id]).first
-
-        if @issue.spent_hours_with_children.present? && @issue.budget.present?
-          total_work_cost = @issue.spent_hours_with_children * work_cost
-          additional_cost = 0
-          profit = (@issue.budget - (total_work_cost + additional_cost)).ceil
-          provision = (profit * provision).ceil
-
-          @result = {
-            estimated: @issue.estimated_hours,
-            spent: @issue.spent_hours_with_children,
-            budget: @issue.budget,
-            profit: profit,
-            provision: provision
-          }
-        end
-      end
     when 'budget'
-      @result = []
-
-      params[:estimation].each do |row|
-        hours = row[:hours].to_f
-        base_rate = row[:rate].to_f
-
-        rate = (base_rate * rate_factor).ceil
-
-        total_work_cost = ((hours * cost_factor) * base_rate).ceil
-        middle_bid = ((hours * rate_factor) * base_rate).ceil
-        lower_bid = (middle_bid * (1.0 - @settings[:margin].to_f)).ceil
-        upper_bid = (middle_bid * (1.0 + @settings[:margin].to_f)).ceil
-
-        @result << {
-          work_cost: total_work_cost,
-          lower_bid: lower_bid,
-          middle_bid: middle_bid,
-          upper_bid: upper_bid
-        }
-      end
-
-      additional_cost = params[:additionals].sum { |row| row[:cost].to_f }
-
-      if params[:budget].present?
-        @score = (((params[:budget].to_f / (@result.first[:middle_bid] + additional_cost)) - 1.0) * 100.0).round(2)
-        @score = [[@score, 100].min, -100].max
-      end
-
-      @result << {
-        total_work_cost: @result.sum { |row| row[:work_cost] } + additional_cost,
-        total_lower_bid: @result.sum { |row| row[:lower_bid] } + additional_cost,
-        total_middle_bid: @result.sum { |row| row[:middle_bid] } + additional_cost,
-        total_upper_bid: @result.sum { |row| row[:upper_bid] } + additional_cost,
-        total_score: @score || 0
-      }
+      count_estimate_budget(cost_factor, rate_factor)
     end
 
     respond_to do |format|
@@ -121,7 +67,40 @@ class BudgetController < ApplicationController
   end
 
   def exclude_issues
-    closed = IssueStatus.find { |status| status.is_closed == true }.try(:id)
-    @issues = @issues.where('status_id != ?', closed) unless closed.nil?
+    @issues = @issues.open
+    @user_manager = User.current.groups.pluck(:id).include? @settings[:group_id].to_i
+    unless @user_manager
+      @issues = @issues.where(assigned_to_id: User.current.id)
+    end
+  end
+
+  def count_estimate_budget(cost_factor, rate_factor)
+    @result = []
+
+    params[:estimation].each do |row|
+      hours = row[:hours].to_f
+      base_rate = row[:rate].to_f
+
+      total_work_cost = ((hours * cost_factor) * base_rate).ceil
+      middle_bid = ((hours * rate_factor) * base_rate).ceil
+      lower_bid = (middle_bid * (1.0 - @settings[:margin].to_f)).ceil
+      upper_bid = (middle_bid * (1.0 + @settings[:margin].to_f)).ceil
+
+      @result << {
+        work_cost: total_work_cost,
+        lower_bid: lower_bid,
+        middle_bid: middle_bid,
+        upper_bid: upper_bid
+      }
+    end
+
+    additional_cost = params[:additionals].sum { |row| row[:cost].to_f }
+
+    @result << {
+      total_work_cost: @result.sum { |row| row[:work_cost] } + additional_cost,
+      total_lower_bid: @result.sum { |row| row[:lower_bid] } + additional_cost,
+      total_middle_bid: @result.sum { |row| row[:middle_bid] } + additional_cost,
+      total_upper_bid: @result.sum { |row| row[:upper_bid] } + additional_cost
+    }
   end
 end

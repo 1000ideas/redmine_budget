@@ -10,6 +10,9 @@ Redmine::Plugin.register :redmine_budget do
   url 'http://1000i.pl'
   author_url 'http://1000i.pl'
 
+  menu :top_menu, :est_budget, { controller: :budget, action: :index }, caption: :top_menu_est, before: :projects
+  menu :top_menu, :budget_issues, { controller: :budget, action: :issues }, caption: :top_menu_budget, before: :projects
+
   settings(
     default: {
       rate_factor: 2,
@@ -18,7 +21,8 @@ Redmine::Plugin.register :redmine_budget do
       profit_share: 0.16,
       margin: 0.15,
       provision: 0.1,
-      tracker_id: Tracker.first.id
+      tracker_id: Tracker.first.id,
+      group_id: Group.first.id
     },
     partial: 'redmine_budget/settings'
   )

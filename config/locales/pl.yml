@@ -1,14 +1,15 @@
 pl:
-  redmine_budget:
-    settings:
-      budget_title: "1000ideas Budget Redmine plugin"
-      tracker: "Nazwa typu zagadnienia Budget"
-      rate_factor: "Współczynnik do szacowania"
-      cost_factor: "Współczynnik kosztu"
-      default_rate: "Domyślna stawka"
-      profit_share: "Udział w zyskach"
-      margin: "Margines szacowania"
-      provision: "Prowizja"
+  top_menu_est: Estymacja budżetu
+  top_menu_budget: Zadania Budget
+  budget_title: "1000ideas Budget Redmine plugin"
+  managers_group: "Grupa managerów"
+  tracker: "Nazwa typu zagadnienia Budget"
+  rate_factor: "Współczynnik do szacowania"
+  cost_factor: "Współczynnik kosztu"
+  default_rate: "Domyślna stawka"
+  profit_share: "Udział w zyskach"
+  margin: "Margines szacowania"
+  provision: "Prowizja"
   budget:
     index:
       budget_control: Kontrola budżetu
@@ -27,6 +28,20 @@ pl:
       score: Wynik
     calculate:
       summary: Podsumowanie
+      log_time: Zalogowany czas
+      user: Użytkownik
+      avg_rate: Średnia stawka
+      time_sum: Łączny czas
+      cost_sum: Łączny koszt
+      realized: Zrealizowany budzet
+      est_time: Szacowany czas
+      spent_time: Spędzony czas
+      budget: Budżet
+      profit: Profit
+      provision: Prowizja
+      disclaimer: "Zadanie %{id} musi mieć zdefiniowane: szacowany czas, budżet i stawki godzinowe"
+    budget:
+      summary: Podsumowanie budżetu
       log_time: Zalogowany czas
       user: Użytkownik
       avg_rate: Średnia stawka

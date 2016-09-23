@@ -24,405 +24,439 @@
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue0 {
-  background: #e63c1a;
+  background: #e63b19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue1 {
-  background: #e63f1a;
+  background: #e63f19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue2 {
-  background: #e6421a;
+  background: #e64219;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue3 {
-  background: #e6461a;
+  background: #e64619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue4 {
-  background: #e6491a;
+  background: #e64919;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue5 {
-  background: #e64d1a;
+  background: #e64d19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue6 {
-  background: #e6501a;
+  background: #e65019;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue7 {
-  background: #e6531a;
+  background: #e65319;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue8 {
-  background: #e6571a;
+  background: #e65719;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue9 {
-  background: #e65a1a;
+  background: #e65a19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue10 {
-  background: #e65e1a;
+  background: #e65e19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue11 {
-  background: #e6611a;
+  background: #e66119;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue12 {
-  background: #e6641a;
+  background: #e66419;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue13 {
-  background: #e6681a;
+  background: #e66819;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue14 {
-  background: #e66b1a;
+  background: #e66b19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue15 {
-  background: #e66f1a;
+  background: #e66f19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue16 {
-  background: #e6721a;
+  background: #e67219;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue17 {
-  background: #e6751a;
+  background: #e67519;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue18 {
-  background: #e6791a;
+  background: #e67919;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue19 {
-  background: #e67c1a;
+  background: #e67c19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue20 {
-  background: #e6801a;
+  background: #e68019;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue21 {
-  background: #e6831a;
+  background: #e68319;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue22 {
-  background: #e6861a;
+  background: #e68619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue23 {
-  background: #e68a1a;
+  background: #e68a19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue24 {
-  background: #e68d1a;
+  background: #e68d19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue25 {
-  background: #e6911a;
+  background: #e69119;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue26 {
-  background: #e6941a;
+  background: #e69419;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue27 {
-  background: #e6971a;
+  background: #e69719;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue28 {
-  background: #e69b1a;
+  background: #e69b19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue29 {
-  background: #e69e1a;
+  background: #e69e19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue30 {
-  background: #e6a21a;
+  background: #e6a219;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue31 {
-  background: #e6a51a;
+  background: #e6a519;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue32 {
-  background: #e6a81a;
+  background: #e6a819;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue33 {
-  background: #e6ac1a;
+  background: #e6ac19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue34 {
-  background: #e6af1a;
+  background: #e6af19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue35 {
-  background: #e6b31a;
+  background: #e6b319;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue36 {
-  background: #e6b61a;
+  background: #e6b619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue37 {
-  background: #e6b91a;
+  background: #e6b919;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue38 {
-  background: #e6bd1a;
+  background: #e6bd19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue39 {
-  background: #e6c01a;
+  background: #e6c019;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue40 {
-  background: #e6c41a;
+  background: #e6c419;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue41 {
-  background: #e6c71a;
+  background: #e6c719;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue42 {
-  background: #e6ca1a;
+  background: #e6ca19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue43 {
-  background: #e6ce1a;
+  background: #e6ce19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue44 {
-  background: #e6d11a;
+  background: #e6d119;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue45 {
-  background: #e6d51a;
+  background: #e6d519;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue46 {
-  background: #e6d81a;
+  background: #e6d819;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue47 {
-  background: #e6db1a;
+  background: #e6db19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue48 {
-  background: #e6df1a;
+  background: #e6df19;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue49 {
-  background: #e6e21a;
+  background: #e6e219;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue50 {
-  background: #e6e61a;
+  background: #e5e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue51 {
-  background: #e2e61a;
+  background: #e2e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue52 {
-  background: #dfe61a;
+  background: #dfe619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue53 {
-  background: #dbe61a;
+  background: #dbe619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue54 {
-  background: #d8e61a;
+  background: #d8e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue55 {
-  background: #d5e61a;
+  background: #d5e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue56 {
-  background: #d1e61a;
+  background: #d1e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue57 {
-  background: #cee61a;
+  background: #cee619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue58 {
-  background: #cae61a;
+  background: #cae619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue59 {
-  background: #c7e61a;
+  background: #c7e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue60 {
-  background: #c4e61a;
+  background: #c3e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue61 {
-  background: #c0e61a;
+  background: #c0e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue62 {
-  background: #bde61a;
+  background: #bde619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue63 {
-  background: #b9e61a;
+  background: #b9e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue64 {
-  background: #b6e61a;
+  background: #b6e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue65 {
-  background: #b3e61a;
+  background: #b3e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue66 {
-  background: #afe61a;
+  background: #afe619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue67 {
-  background: #ace61a;
+  background: #ace619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue68 {
-  background: #a8e61a;
+  background: #a8e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue69 {
-  background: #a5e61a;
+  background: #a5e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue70 {
-  background: #a2e61a;
+  background: #a1e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue71 {
-  background: #9ee61a;
+  background: #9ee619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue72 {
-  background: #9be61a;
+  background: #9be619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue73 {
-  background: #97e61a;
+  background: #97e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue74 {
-  background: #94e61a;
+  background: #94e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue75 {
-  background: #91e61a;
+  background: #91e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue76 {
-  background: #8de61a;
+  background: #8de619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue77 {
-  background: #8ae61a;
+  background: #8ae619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue78 {
-  background: #86e61a;
+  background: #86e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue79 {
-  background: #83e61a;
+  background: #83e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue80 {
-  background: #80e61a;
+  background: #80e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue81 {
-  background: #7ce61a;
+  background: #7ce619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue82 {
-  background: #79e61a;
+  background: #79e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue83 {
-  background: #75e61a;
+  background: #75e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue84 {
-  background: #72e61a;
+  background: #72e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue85 {
-  background: #6fe61a;
+  background: #6ee619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue86 {
-  background: #6be61a;
+  background: #6be619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue87 {
-  background: #68e61a;
+  background: #68e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue88 {
-  background: #64e61a;
+  background: #64e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue89 {
-  background: #61e61a;
+  background: #61e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue90 {
-  background: #5ee61a;
+  background: #5de619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue91 {
-  background: #5ae61a;
+  background: #5ae619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue92 {
-  background: #57e61a;
+  background: #57e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue93 {
-  background: #53e61a;
+  background: #53e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue94 {
-  background: #50e61a;
+  background: #50e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue95 {
-  background: #4de61a;
+  background: #4ce619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue96 {
-  background: #49e61a;
+  background: #49e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue97 {
-  background: #46e61a;
+  background: #46e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue98 {
-  background: #42e61a;
+  background: #42e619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue99 {
-  background: #3fe61a;
+  background: #3fe619;
 }
 /* line 17, budget.sass */
 .redmine_budget fieldset .score-indicator div.hue100 {
-  background: #3ce61a;
+  background: #3ce619;
+}
+
+/* line 20, budget.sass */
+#manage-display {
+  background: #f4f7f8;
+  color: #666666;
+  border: 1px solid #e6eaef;
+  padding: 10px;
+}
+/* line 26, budget.sass */
+#manage-display #budget-query-form {
+  font-size: 16px;
+}
+/* line 29, budget.sass */
+#manage-display #budget-query-form .label-wrapper {
+  width: 30%;
+  float: left;
+}
+/* line 32, budget.sass */
+#manage-display #budget-query-form .select-wrapper {
+  width: 69%;
+  float: left;
+}
+/* line 36, budget.sass */
+#manage-display #budget-query-form .filter-part {
+  width: 50%;
+}
+/* line 39, budget.sass */
+#manage-display #budget-query-form .filter-part label {
+  width: 50%;
+}
+/* line 42, budget.sass */
+#manage-display #budget-query-form .filter-part select {
+  width: 50%;
 }

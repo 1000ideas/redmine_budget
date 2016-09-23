@@ -1,0 +1,62 @@
+<% if issue.budget? %>
+  <style type="text/css">
+    table.list td {
+      border-top: 1px solid #e6eaef;
+    }
+  </style>
+
+  <%= render partial: 'additional_costs/show' %>
+
+  <% if issue.budget %>
+    <h2><%= t('.summary') %></h2>
+    <h3><%= t('.log_time') %></h3>
+
+    <table class="list">
+      <thead>
+        <tr>
+          <th><%= t('.user') %></th>
+          <th><%= t('.avg_rate') %></th>
+          <th><%= t('.time_sum') %></th>
+          <th><%= t('.cost_sum') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @issue.time_entries_with_children.group_by(&:user_id).each do |user_id, time_entries| %>
+          <tr>
+            <td style="font-weight: bold;"><%= User.find(user_id).lastname %></td>
+            <% @issue.count_costs(user_id, time_entries).each do |cost| %>
+              <%= content_tag :td, cost %>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h3><%= t('.realized') %></h3>
+    <table class="list">
+      <tr>
+        <th><%= t('.est_time') %></th>
+        <td><%= issue.estimated_hours.to_f.round(2) %></td>
+      </tr>
+      <tr>
+        <th><%= t('.spent_time') %></th>
+        <td><%= issue.spent_time.to_f.round(2) %></td>
+      </tr>
+      <tr>
+        <th><%= t('.budget') %></th>
+        <td><%= issue.budget %></td>
+      </tr>
+      <tr>
+        <th><%= t('.profit') %></th>
+        <td><%= issue.budget_profit %></td>
+      </tr>
+      <tr>
+        <th><%= t('.provision') %></th>
+        <td><%= issue.provision %></td>
+      </tr>
+    </table>
+  <% else %>
+    <p><%= t('.disclaimer', id: params[:issue_id]) %></p>
+  <% end %>
+  <hr />
+<% end %>

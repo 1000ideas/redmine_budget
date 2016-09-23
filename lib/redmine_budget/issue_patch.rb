@@ -24,19 +24,17 @@ module RedmineBudget
 
     module InstanceMethods
       def budget?
-        tracker_id.to_i == Setting[:plugin_redmine_budget][:tracker_id].to_i
+        tracker_id.to_i == budget_settings[:tracker_id].to_i
       end
 
       def budget
         if (custom_field = custom_field_values.find { |cfv| cfv.custom_field.name =~ /budget/i })
           custom_field.value.to_f.round(2)
-        else
-          nil
         end
       end
 
       def work_cost
-        factor = Setting[:plugin_redmine_budget][:cost_factor].to_f
+        factor = budget_settings[:cost_factor].to_f
         (work_cost_sum * factor).to_f.round(2)
       end
 
@@ -54,7 +52,7 @@ module RedmineBudget
       end
 
       def budget_profit
-        # @settings = Setting[:plugin_redmine_budget]
+        # @settings = budget_settings
 
         # # rate_factor = @settings[:rate_factor].to_f
         # base_rate = @settings[:default_rate].to_f
@@ -87,6 +85,10 @@ module RedmineBudget
         budget - (work_cost + add_cost)
       end
 
+      def provision
+        (budget_profit * budget_settings[:provision].to_f).ceil
+      end
+
       def spent_hours_with_children
         if children.count > 0
           spent_hours + children.sum(&:spent_hours_with_children)
@@ -106,21 +108,39 @@ module RedmineBudget
       def work_cost_sum
         cost_sum = 0
         time_entries_with_children.group_by(&:user_id).each do |user_id, time_entries|
-          time_entries.each do |time|
-            rate = Rate.order('id DESC')
-                       .where(
-                         user_id: user_id,
-                         project_id: time.project_id,
-                         date_in_effect: (10.years.ago...time.created_on)
-                       )
-                       .limit(1)
-                       .first
-            rate = (rate.present? ? rate.amount.to_f : Setting[:plugin_redmine_budget][:default_rate].to_f)
-
-            cost_sum += time.hours * rate
-          end
+          cost_sum += count_costs(user_id, time_entries).last
         end
         cost_sum
+      end
+
+      def count_costs(user_id, time_entries)
+        rate_avg = []
+        hours_sum = 0
+        cost_sum = 0
+        time_entries.each do |time|
+          rate = Rate.order('id DESC')
+                     .where(
+                       user_id: user_id,
+                       project_id: time.project_id,
+                       date_in_effect: (10.years.ago...time.created_on)
+                     )
+                     .limit(1)
+                     .first
+          rate = (rate.present? ? rate.amount.to_f : budget_settings[:default_rate].to_f)
+
+          rate_avg << rate
+          hours_sum += time.hours
+          cost_sum += time.hours * rate
+        end
+        [
+          (rate_avg.reduce(:+) / rate_avg.size.to_f).round(2),
+          hours_sum.to_f.round(2),
+          cost_sum.to_f.round(2)
+        ]
+      end
+
+      def budget_settings
+        @budget_settings ||= Setting[:plugin_redmine_budget]
       end
 
       # Returns the current cost of the TimeEntry based on it's rate and hours

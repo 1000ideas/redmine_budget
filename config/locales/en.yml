@@ -1,15 +1,16 @@
 # English strings go here for Rails i18n
 en:
-  redmine_budget:
-    settings:
-      budget_title: "1000ideas Budget Redmine plugin"
-      tracker: "Budget tracker name"
-      rate_factor: "Rate factor"
-      cost_factor: "Cost factor"
-      default_rate: "Default rate"
-      profit_share: "Profit share"
-      margin: "Budget margin"
-      provision: "Provision"
+  top_menu_est: Estimate Budget
+  top_menu_budget: Budget Issues
+  budget_title: "1000ideas Budget Redmine plugin"
+  managers_group: "Managers group"
+  tracker: "Budget tracker name"
+  rate_factor: "Rate factor"
+  cost_factor: "Cost factor"
+  default_rate: "Default rate"
+  profit_share: "Profit share"
+  margin: "Budget margin"
+  provision: "Provision"
   budget:
     index:
       budget_control: Budget control
@@ -28,6 +29,20 @@ en:
       score: Score
     calculate:
       summary: Summary
+      log_time: Logged time
+      user: User
+      avg_rate: Average rate
+      time_sum: Overall time
+      cost_sum: Overall cost
+      realized: Realized budget
+      est_time: Estimated time
+      spent_time: Spent time
+      budget: Budget
+      profit: Profit
+      provision: Provision
+      disclaimer: "Issue %{id} must have Estimated Time, Budget and Rates specified"
+    budget:
+      summary: Budget Summary
       log_time: Logged time
       user: User
       avg_rate: Average rate

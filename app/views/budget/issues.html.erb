@@ -1,36 +1,17 @@
-<% html_title t('redmine_budget.settings.budget_title') %>
+<% html_title t('budget_title') %>
 
 <% content_for :header_tags do %>
   <%= javascript_include_tag 'jquery-throttle.min.js', 'budget_helper', 'budget_issues', :plugin => 'redmine_budget' %>
   <%= stylesheet_link_tag 'budget', :plugin => 'redmine_budget' %>
 <% end %>
 
-<%= form_tag budget_issues_path, id: 'budget-query-form', method: :get do %>
-  <div id="filter-options">
-    <%= label_tag 'filter_option', t('.filter_option') %>
-    <%= select_tag 'filter_option', options_for_select(filter_options) %>
-  </div>
-  <div id="filter-project" class="filter-values">
-    <%= label_tag 'filter_value', t('.filter_value') %>
-    <%= select_tag 'filter_value', options_for_select(filter_values('Project')) %>
-  </div>
-  <div id="filter-assignee" class="filter-values" style="display: none;">
-    <%= label_tag 'filter_value', t('.filter_value') %>
-    <%= select_tag 'filter_value', options_for_select(filter_values('User')) %>
-  </div>
-  <div>
-    <%= submit_tag t('.filter') %>
-  </div>
-
-<% end %>
-
-<%= button_to t('.show_all'), budget_issues_path, method: :get %>
+<%= render partial: 'filter' %>
 
 <div class="redmine_budget">
   <div class="issue_control">
     <h2><%= t('.budget_issues') %></h2>
 
-    <table border="1" class="estimation">
+    <table class="list estimation">
       <tr class="header">
         <th><%= t('.issue') %></th>
         <th><%= t('.budget') %></th>
@@ -45,7 +26,7 @@
       </tr>
       <% @issues.each do |issue| %>
       <tr class="row">
-        <td><%= link_to "#{issue_link(issue)}", budget_path(issue_id: issue.id), target: '_blank' %></td>
+        <td><%= link_to "#{issue_link(issue)}", issue_path(id: issue.id), target: '_blank' %></td>
         <td><%= issue.budget %></td>
         <td><%= issue.work_cost %></td>
         <td><%= issue.add_cost %></td>

@@ -1,4 +1,4 @@
-.redmine_budget 
+.redmine_budget
 	fieldset
 		width: 100%
 		label
@@ -16,3 +16,28 @@
 				@for $i from 0 through 100
 					&.hue#{$i}
 						background: hsl(10 + $i,80,50)
+
+#manage-display
+	background: #f4f7f8
+	color: #666
+	border: 1px solid #e6eaef
+	padding: 10px
+
+	#budget-query-form
+		font-size: 16px
+
+		.label-wrapper
+			width: 30%
+			float: left
+		.select-wrapper
+			width: 69%
+			float: left
+
+		.filter-part
+			width: 50%
+
+			label
+				width: 50%
+
+			select
+				width: 50%

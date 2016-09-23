@@ -1,11 +1,16 @@
 <% if @issue.persisted? && @issue.budget? %>
   <hr />
   <div class="issue-additional-costs" data-issue-id="<%= @issue.id %>">
-    <h6>Additional costs</h6>
+    <h2>Additional costs</h2>
     <% @issue.additional_costs.each do |cost| %>
       <%= render partial: 'additional_costs/cost', locals: { cost: cost } %>
     <% end %>
 
     <%= render partial: 'additional_costs/form' %>
   </div>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= javascript_include_tag 'additional_costs', plugin: 'redmine_budget' %>
+  <%= stylesheet_link_tag 'additional_costs', plugin: 'redmine_budget' %>
 <% end %>
