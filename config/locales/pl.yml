@@ -3,6 +3,7 @@ pl:
   top_menu_budget: Zadania Budget
   budget_title: "1000ideas Budget Redmine plugin"
   managers_group: "Grupa managerów"
+  access_group: "Grupa mająca dostęp"
   tracker: "Nazwa typu zagadnienia Budget"
   rate_factor: "Współczynnik do szacowania"
   cost_factor: "Współczynnik kosztu"

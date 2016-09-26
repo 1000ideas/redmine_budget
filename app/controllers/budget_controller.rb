@@ -52,7 +52,7 @@ class BudgetController < ApplicationController
   private
 
   def find_settings
-    @settings = Setting[:plugin_redmine_budget]
+    @settings ||= Setting[:plugin_redmine_budget]
   end
 
   def apply_filter
@@ -68,8 +68,7 @@ class BudgetController < ApplicationController
 
   def exclude_issues
     @issues = @issues.open
-    @user_manager = User.current.groups.pluck(:id).include? @settings[:group_id].to_i
-    unless @user_manager
+    unless User.current.can_manage_budget?
       @issues = @issues.where(assigned_to_id: User.current.id)
     end
   end

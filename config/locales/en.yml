@@ -4,6 +4,7 @@ en:
   top_menu_budget: Budget Issues
   budget_title: "1000ideas Budget Redmine plugin"
   managers_group: "Managers group"
+  access_group: "Group that has access"
   tracker: "Budget tracker name"
   rate_factor: "Rate factor"
   cost_factor: "Cost factor"

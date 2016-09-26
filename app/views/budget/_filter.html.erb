@@ -16,7 +16,7 @@
         <%= select_tag 'filter_value', options_for_select(filter_values('Project')) %>
       </div>
     </div>
-    <% if @user_manager %>
+    <% if User.current.can_manage_budget? %>
       <div id="filter-assignee" class="filter-values filter-part" style="display: none;">
         <div class="label-wrapper">
           <%= label_tag 'filter_value', t('budget.issues.filter_value') %>

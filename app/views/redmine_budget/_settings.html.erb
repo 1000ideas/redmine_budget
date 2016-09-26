@@ -6,10 +6,16 @@
         <%= select_tag "settings[tracker_id]", options_from_collection_for_select(Tracker.all, :id, :name, settings[:tracker_id]) %>
       </td>
     </tr>
-    <tr class="budget-group">
+    <tr class="budget-managers-group">
       <th><%= l(:managers_group) %></th>
       <td>
-        <%= select_tag "settings[group_id]", options_from_collection_for_select(Group.all, :id, :name, settings[:group_id]) %>
+        <%= select_tag "settings[managers_id]", options_from_collection_for_select(Group.all, :id, :name, settings[:managers_id]) %>
+      </td>
+    </tr>
+    <tr class="budget-access-group">
+      <th><%= l(:access_group) %></th>
+      <td>
+        <%= select_tag "settings[access_id]", options_from_collection_for_select(Group.all, :id, :name, settings[:access_id]) %>
       </td>
     </tr>
     <tr class="budget-rate_factor">

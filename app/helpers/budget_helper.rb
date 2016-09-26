@@ -5,7 +5,7 @@ module BudgetHelper
 
   def filter_options
     arr = ['Project']
-    arr << 'Assignee' if @user_manager
+    arr << 'Assignee' if User.current.can_manage_budget?
     arr
   end
 
